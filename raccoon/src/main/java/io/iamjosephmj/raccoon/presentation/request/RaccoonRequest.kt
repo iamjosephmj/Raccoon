@@ -1,7 +1,10 @@
 package io.iamjosephmj.raccoon.presentation.request
 
-import okhttp3.RequestBody
-
+/**
+ * Raccoon Request blue-print.
+ *
+ * @author Joseph James.
+ */
 data class RaccoonRequest(
     val headers: List<Pair<String, String>> = arrayListOf(),
     val requestBody: String?,

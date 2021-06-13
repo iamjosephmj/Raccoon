@@ -7,6 +7,11 @@ import io.iamjosephmj.raccoon.util.GsonUtils.createResponse
 import okhttp3.Interceptor
 import okhttp3.Response
 
+/**
+ * This is the interceptor plugin for Retrofit.
+ *
+ * @author Joseph James.
+ */
 class RetrofitPlugin : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.createRequest()

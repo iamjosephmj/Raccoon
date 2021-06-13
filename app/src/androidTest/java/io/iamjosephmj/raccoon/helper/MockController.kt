@@ -10,12 +10,12 @@ import io.iamjosephmj.raccoon.util.GsonUtils.buildRaccoonResponse
 class MockController : RaccoonController() {
 
     override fun setup() {
-
+        // Do the DI related stuff
     }
 
     @RaccoonEndpoint(
         endpoint = "https://jsonplaceholder.typicode.com/todos/1",
-        latency = 1000,
+        latency = 100,
         RaccoonRequestType.GET
     )
     fun fetchToDoList(): RaccoonResponse {
@@ -23,12 +23,12 @@ class MockController : RaccoonController() {
             id = 10,
             userId = 1231,
             completed = true,
-            title = "278973"
+            title = "mock response"
         ).buildRaccoonResponse(statusCode = 200)
     }
 
 
     override fun tearDown() {
-
+        // clean up memory.
     }
 }

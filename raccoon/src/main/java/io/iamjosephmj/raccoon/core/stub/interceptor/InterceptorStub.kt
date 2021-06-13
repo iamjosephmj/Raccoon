@@ -9,7 +9,7 @@ import io.iamjosephmj.raccoon.service.RaccoonService
  *
  * @author Joseph James.
  */
-interface InterceptorStub {
+internal interface InterceptorStub {
 
 
     /**

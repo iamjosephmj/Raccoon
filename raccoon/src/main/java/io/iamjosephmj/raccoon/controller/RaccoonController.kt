@@ -1,10 +1,20 @@
 package io.iamjosephmj.raccoon.controller
 
-// TODO: make this annotation style class
+/**
+ * This is the base of all mock controller classes.
+ *
+ * @author Joseph
+ */
 abstract class RaccoonController {
 
+    /**
+     * This method is useful to initialize the controller invocation.
+     */
     abstract fun setup()
 
+    /**
+     * Clean up function.
+     */
     abstract fun tearDown()
 
 }

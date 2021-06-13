@@ -12,6 +12,10 @@ import okio.BufferedSink
 
 object GsonUtils {
 
+    val gson by lazy {
+        Gson()
+    }
+
     fun Interceptor.Chain.createRequest(): RaccoonRequest {
         val request = request()
 
@@ -85,7 +89,7 @@ object GsonUtils {
     fun Any.buildRaccoonResponse(
         statusCode: Int
     ): RaccoonResponse {
-        val resp = Gson().toJson(this)
+        val resp = gson.toJson(this)
         return RaccoonResponse(
             statusCode = statusCode,
             body = resp

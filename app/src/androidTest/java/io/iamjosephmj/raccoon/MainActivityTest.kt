@@ -5,6 +5,7 @@ import androidx.test.rule.ActivityTestRule
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
 import io.iamjosephmj.raccoon.helper.MockService
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -17,16 +18,14 @@ import org.junit.runner.RunWith
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
+class MainActivityTest {
 
     @Before
     fun setup() {
-        RaccoonStub.init(
-            RaccoonConfig(
-                serviceClasses = listOf(
-                    MockService::class
-                )
-            )
+        RaccoonStub.setUp(
+            RaccoonConfig.Builder()
+                .addService(MockService::class)
+                .build()
         )
 
     }
@@ -44,4 +43,10 @@ class ExampleInstrumentedTest {
         assert(true)
         rule.activity.finish()
     }
+
+    @After
+    fun tearDown() {
+        RaccoonStub.teatDown()
+    }
+
 }

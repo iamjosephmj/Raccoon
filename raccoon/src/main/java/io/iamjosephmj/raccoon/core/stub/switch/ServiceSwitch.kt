@@ -5,6 +5,11 @@ import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 import io.iamjosephmj.raccoon.service.RaccoonService
 
+/**
+ * This class is responsible for executing the request from interceptor.
+ *
+ * @author Joseph James.
+ */
 class ServiceSwitch {
 
     private val services: MutableList<RaccoonService> = mutableListOf()
