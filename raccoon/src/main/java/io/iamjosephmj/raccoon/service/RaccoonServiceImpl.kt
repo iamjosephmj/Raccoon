@@ -10,9 +10,9 @@ import io.iamjosephmj.raccoon.exception.EndpointNotFoundException
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 
-@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 open class RaccoonServiceImpl : RaccoonService {
 
+    @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
     override val serviceId: String = javaClass.canonicalName.toString().split(".")
         .last()
 
@@ -20,6 +20,7 @@ open class RaccoonServiceImpl : RaccoonService {
         ServiceGraph.serviceObjects[serviceId]
             ?.filter { controller ->
                 var isControllerAvailable = false
+                @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
                 ControllerGraph.endpointPool[
                         "${
                             serviceId.split(".")
@@ -51,6 +52,10 @@ open class RaccoonServiceImpl : RaccoonService {
             .filter { method ->
                 method.getAnnotation(RaccoonEndpoint::class.java) != null
             }.forEach { method ->
+
+                // TODO: room to introduce other parameters
+                Thread.sleep(method.getAnnotation(RaccoonEndpoint::class.java).latency)
+
                 return if (method.parameterTypes.isNotEmpty()) {
                     method.invoke(
                         controller,
