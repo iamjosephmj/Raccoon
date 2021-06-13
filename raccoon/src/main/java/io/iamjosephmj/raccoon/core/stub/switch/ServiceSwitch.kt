@@ -11,9 +11,11 @@ class ServiceSwitch {
 
     fun executeRequest(raccoonRequest: RaccoonRequest): RaccoonResponse {
         services.forEach { service ->
-            if (service.isAllowed(raccoonRequest)) {
-                return service.execute(raccoonRequest)
-            }
+            val controller = service.fetchController(raccoonRequest)
+            service.setup(controller)
+            val result = service.execute(raccoonRequest, controller)
+            service.tearDown(controller)
+            return result
         }
 
         throw UrlNotFoundException()
@@ -22,25 +24,4 @@ class ServiceSwitch {
     fun addService(raccoonService: RaccoonService) {
         services.add(raccoonService)
     }
-
-    fun initializeService(raccoonRequest: RaccoonRequest) {
-        services.forEach { service ->
-            if (service.isAllowed(raccoonRequest)) {
-                return service.setup()
-            }
-        }
-
-        throw UrlNotFoundException()
-    }
-
-    fun tearDownService(raccoonRequest: RaccoonRequest) {
-        services.forEach { service ->
-            if (service.isAllowed(raccoonRequest)) {
-                return service.tearDown()
-            }
-        }
-
-        throw UrlNotFoundException()
-    }
-
 }

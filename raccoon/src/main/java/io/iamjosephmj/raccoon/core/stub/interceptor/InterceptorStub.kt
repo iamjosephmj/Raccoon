@@ -2,6 +2,7 @@ package io.iamjosephmj.raccoon.core.stub.interceptor
 
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
+import io.iamjosephmj.raccoon.service.RaccoonService
 
 /**
  * This Interface is used for interaction of Interceptor with the Service class.
@@ -10,11 +11,6 @@ import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
  */
 interface InterceptorStub {
 
-    /**
-     * This is to notify the service class that the http request has started.
-     *
-     */
-    fun preRequestNotification(raccoonRequest: RaccoonRequest)
 
     /**
      * This is the request-response handshake method.
@@ -22,11 +18,7 @@ interface InterceptorStub {
      * @param raccoonRequest packed from the interceptor
      * @return response from the controller layer.
      */
-    fun request(raccoonRequest: RaccoonRequest): RaccoonResponse
+    fun execute(raccoonRequest: RaccoonRequest): RaccoonResponse
 
-    /**
-     * This is to notify the service class that the http request has ended.
-     *
-     */
-    fun postRequestNotification(raccoonRequest: RaccoonRequest)
+    fun addService(raccoonService: RaccoonService)
 }

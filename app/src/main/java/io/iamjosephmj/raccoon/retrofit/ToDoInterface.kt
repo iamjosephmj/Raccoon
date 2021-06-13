@@ -6,6 +6,8 @@ import retrofit2.http.Path
 
 interface ToDoInterface {
     @GET("todos/{page}")
-    suspend fun listRepos(@Path("page") user: Int): retrofit2.Response<Response>
+    suspend fun listRepos(
+        @Path("page") user: Int
+    ): retrofit2.Response<Response>
 
 }

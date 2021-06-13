@@ -3,7 +3,7 @@ package io.iamjosephmj.raccoon.core.processor
 import io.iamjosephmj.raccoon.annotations.RaccoonController
 import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
 import io.iamjosephmj.raccoon.core.stub.graph.ServiceGraph
-import io.iamjosephmj.raccoon.core.stub.switch.ServiceSwitch
+import io.iamjosephmj.raccoon.core.stub.interceptor.InterceptorStubImpl
 import io.iamjosephmj.raccoon.service.RaccoonService
 import kotlin.reflect.KClass
 
@@ -11,7 +11,7 @@ object ServiceProcessor {
 
     fun makeServiceGraph(
         raccoonConfig: RaccoonConfig,
-        serviceSwitch: ServiceSwitch
+        serviceSwitch: InterceptorStubImpl
     ) {
 
         raccoonConfig.serviceClasses.forEach { service ->

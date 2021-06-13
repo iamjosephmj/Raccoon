@@ -1,22 +1,32 @@
 package io.iamjosephmj.raccoon.util
 
+import com.google.gson.Gson
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
+import okio.Buffer
+import okio.BufferedSink
 
 object GsonUtils {
 
     fun Interceptor.Chain.createRequest(): RaccoonRequest {
         val request = request()
+
+        val sink: BufferedSink = Buffer()
+        request.body?.writeTo(sink)
+
         return RaccoonRequest(
-            requestBody = request.body,
+            requestBody = sink.toString()
+                .trimDownToRequestBody(),
             headers = request.headers.toPair(),
             requestType = request.fetchRequestType(),
             endpoint = request.url.toString()
-        )
+        ).apply {
+            sink.close()
+        }
     }
 
     fun RaccoonResponse.createResponse(request: Request): Response {
@@ -33,14 +43,20 @@ object GsonUtils {
             .build()
     }
 
+    private fun String.trimDownToRequestBody(): String {
+        return replace("text=", "")
+            .replace("[", "")
+            .replace("]", "")
+    }
 
-    fun Headers.toPair(): List<Pair<String, String>> {
+
+    private fun Headers.toPair(): List<Pair<String, String>> {
         return map { header ->
             header
         }
     }
 
-    fun Request.fetchRequestType(): RaccoonRequestType {
+    private fun Request.fetchRequestType(): RaccoonRequestType {
         return when (method) {
             "GET" -> {
                 RaccoonRequestType.GET
@@ -64,5 +80,15 @@ object GsonUtils {
                 RaccoonRequestType.GET
             }
         }
+    }
+
+    fun Any.buildRaccoonResponse(
+        statusCode: Int
+    ): RaccoonResponse {
+        val resp = Gson().toJson(this)
+        return RaccoonResponse(
+            statusCode = statusCode,
+            body = resp
+        )
     }
 }

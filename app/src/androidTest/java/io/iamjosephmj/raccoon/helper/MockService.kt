@@ -1,4 +1,4 @@
-package io.iamjosephmj.raccoon.retrofit
+package io.iamjosephmj.raccoon.helper
 
 import io.iamjosephmj.raccoon.service.RaccoonServiceImpl
 

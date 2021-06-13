@@ -1,12 +1,15 @@
 package io.iamjosephmj.raccoon
 
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import androidx.test.rule.ActivityTestRule
+import io.iamjosephmj.raccoon.core.stub.RaccoonStub
+import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
+import io.iamjosephmj.raccoon.helper.MockService
+import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -15,10 +18,30 @@ import org.junit.Assert.*
  */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    @Before
+    fun setup() {
+        RaccoonStub.init(
+            RaccoonConfig(
+                serviceClasses = listOf(
+                    MockService::class
+                )
+            )
+        )
+
+    }
+
+    @get:Rule
+    val rule = ActivityTestRule(
+        MainActivity::class.java, false, false
+    )
+
     @Test
     fun useAppContext() {
+        rule.launchActivity(null)
+        Thread.sleep(10000)
         // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("io.iamjosephmj.raccoon", appContext.packageName)
+        assert(true)
+        rule.activity.finish()
     }
 }
