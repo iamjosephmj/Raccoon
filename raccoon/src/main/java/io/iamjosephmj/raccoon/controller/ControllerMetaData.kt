@@ -1,10 +1,8 @@
-package io.iamjosephmj.raccoon.annotations
+package io.iamjosephmj.raccoon.controller
 
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
 
-@Target(AnnotationTarget.FUNCTION)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class RaccoonEndpoint(
+data class ControllerMetaData(
     val endpoint: String,
     val latency: Long = 100,
     val requestType: RaccoonRequestType

@@ -1,0 +1,19 @@
+package io.iamjosephmj.raccoon.presentation.plugins
+
+import io.iamjosephmj.raccoon.core.stub.RaccoonStub
+import io.iamjosephmj.raccoon.util.GsonUtils.createRequest
+import io.iamjosephmj.raccoon.util.GsonUtils.createResponse
+import okhttp3.Interceptor
+import okhttp3.Response
+
+class RetrofitPlugin : Interceptor {
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.createRequest()
+        RaccoonStub.getServiceSwitch().initializeService(request)
+        val resp = RaccoonStub.getServiceSwitch().executeRequest(request)
+        RaccoonStub.getServiceSwitch().tearDownService(request)
+        return resp.createResponse(chain.request())
+
+    }
+
+}

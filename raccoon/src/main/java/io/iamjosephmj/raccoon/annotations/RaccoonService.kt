@@ -1,5 +1,5 @@
 package io.iamjosephmj.raccoon.annotations
 
-@Target(AnnotationTarget.ANNOTATION_CLASS)
+@Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RaccoonService
