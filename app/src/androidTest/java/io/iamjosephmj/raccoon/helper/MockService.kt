@@ -1,10 +1,12 @@
 package io.iamjosephmj.raccoon.helper
 
+import io.iamjosephmj.raccoon.annotations.RaccoonController
+import io.iamjosephmj.raccoon.annotations.RaccoonService
 import io.iamjosephmj.raccoon.service.RaccoonServiceImpl
 
-@io.iamjosephmj.raccoon.annotations.RaccoonService
+@RaccoonService
 class MockService : RaccoonServiceImpl() {
 
-    @io.iamjosephmj.raccoon.annotations.RaccoonController
+    @RaccoonController
     fun providesMockController() = MockController::class
 }

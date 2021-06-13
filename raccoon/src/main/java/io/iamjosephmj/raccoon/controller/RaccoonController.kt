@@ -1,14 +1,10 @@
 package io.iamjosephmj.raccoon.controller
 
 // TODO: make this annotation style class
-open class RaccoonController {
+abstract class RaccoonController {
 
-    open fun setup() {
+    abstract fun setup()
 
-    }
-
-    open fun tearDown() {
-
-    }
+    abstract fun tearDown()
 
 }

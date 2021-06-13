@@ -9,6 +9,10 @@ import io.iamjosephmj.raccoon.util.GsonUtils.buildRaccoonResponse
 
 class MockController : RaccoonController() {
 
+    override fun setup() {
+
+    }
+
     @RaccoonEndpoint(
         endpoint = "https://jsonplaceholder.typicode.com/todos/1",
         latency = 1000,
@@ -21,5 +25,10 @@ class MockController : RaccoonController() {
             completed = true,
             title = "278973"
         ).buildRaccoonResponse(statusCode = 200)
+    }
+
+
+    override fun tearDown() {
+
     }
 }
