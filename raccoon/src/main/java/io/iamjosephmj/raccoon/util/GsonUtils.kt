@@ -1,6 +1,7 @@
 package io.iamjosephmj.raccoon.util
 
 import com.google.gson.Gson
+import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
@@ -19,15 +20,29 @@ object GsonUtils {
     fun Interceptor.Chain.createRequest(): RaccoonRequest {
         val request = request()
 
+        val urlDetails = request.url.toString().split("?")
+
+        val queryParams = mutableMapOf<String, String>()
+
+        urlDetails.subList(1, urlDetails.size).forEach { params ->
+            val data = params.split("=")
+            queryParams[data[0]] = data[1]
+        }
+
+        val parameters = Parameters(
+            headers = request.headers.toPair(),
+            queryParameters = queryParams
+        )
+
         val sink: BufferedSink = Buffer()
         request.body?.writeTo(sink)
 
         return RaccoonRequest(
             requestBody = sink.toString()
                 .trimDownToRequestBody(),
-            headers = request.headers.toPair(),
+            parameters = parameters,
             requestType = request.fetchRequestType(),
-            endpoint = request.url.toString()
+            endpoint = urlDetails.first()
         ).apply {
             sink.close()
         }

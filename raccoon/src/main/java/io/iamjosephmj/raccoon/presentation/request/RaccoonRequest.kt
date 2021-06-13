@@ -6,7 +6,7 @@ package io.iamjosephmj.raccoon.presentation.request
  * @author Joseph James.
  */
 data class RaccoonRequest(
-    val headers: List<Pair<String, String>> = arrayListOf(),
+    val parameters: Parameters,
     val requestBody: String?,
     val requestType: RaccoonRequestType,
     val endpoint: String

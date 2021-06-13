@@ -1,3 +1,3 @@
 package io.iamjosephmj.raccoon.exception
 
-class ControllerParameterException : RaccoonException()
+open class ControllerParameterException : RaccoonException()

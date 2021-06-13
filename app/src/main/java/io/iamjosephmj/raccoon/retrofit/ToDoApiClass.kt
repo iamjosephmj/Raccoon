@@ -29,7 +29,10 @@ class ToDoApiClass {
     }
 
     suspend fun getPage(pageNumber: Int): Response? {
-        return service.listRepos(pageNumber).body()
+        return service.listRepos(
+            pageNumber,
+            "Android"
+        ).body()
 
     }
 }

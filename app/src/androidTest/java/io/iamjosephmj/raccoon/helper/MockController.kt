@@ -1,8 +1,9 @@
 package io.iamjosephmj.raccoon.helper
 
-import io.iamjosephmj.raccoon.annotations.Header
+import io.iamjosephmj.raccoon.annotations.Params
 import io.iamjosephmj.raccoon.annotations.RaccoonEndpoint
 import io.iamjosephmj.raccoon.controller.RaccoonController
+import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 import io.iamjosephmj.raccoon.retrofit.Response
@@ -20,7 +21,7 @@ class MockController : RaccoonController() {
         RaccoonRequestType.GET
     )
 
-    fun fetchToDoList(@Header headers: List<Pair<String, String>>): RaccoonResponse {
+    fun fetchToDoList(@Params headers: Parameters): RaccoonResponse {
         return Response(
             id = 10,
             userId = 1231,

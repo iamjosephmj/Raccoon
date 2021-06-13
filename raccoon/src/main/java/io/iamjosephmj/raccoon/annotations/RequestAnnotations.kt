@@ -7,4 +7,4 @@ package io.iamjosephmj.raccoon.annotations
  */
 @Target(AnnotationTarget.VALUE_PARAMETER)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Header
+annotation class Params

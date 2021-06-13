@@ -1,13 +1,15 @@
 package io.iamjosephmj.raccoon.service
 
-import io.iamjosephmj.raccoon.annotations.Header
+import io.iamjosephmj.raccoon.annotations.Params
 import io.iamjosephmj.raccoon.annotations.RaccoonEndpoint
 import io.iamjosephmj.raccoon.controller.RaccoonController
 import io.iamjosephmj.raccoon.core.stub.graph.ControllerGraph
 import io.iamjosephmj.raccoon.core.stub.graph.ServiceGraph
-import io.iamjosephmj.raccoon.exception.ControllerParameterException
 import io.iamjosephmj.raccoon.exception.ControllerNotFoundException
+import io.iamjosephmj.raccoon.exception.ControllerParameterException
 import io.iamjosephmj.raccoon.exception.EndpointNotFoundException
+import io.iamjosephmj.raccoon.exception.ParameterAnnotationNotCorrectException
+import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 import io.iamjosephmj.raccoon.util.GsonUtils
@@ -52,7 +54,7 @@ open class RaccoonServiceImpl : RaccoonService {
                 return controller
             }
 
-        // Exception thrown for controller not found scenerio
+        // Exception thrown for controller not found scenario
         throw ControllerNotFoundException()
     }
 
@@ -72,15 +74,19 @@ open class RaccoonServiceImpl : RaccoonService {
 
                 val headerIndex = method.parameterAnnotations.indexOfFirst { annotationList ->
                     annotationList.indexOfFirst { annotation ->
-                        annotation is Header
+                        annotation is Params
                     } != -1
                 }
 
-                // If no parameters are passed except headers
+                if (headerIndex != -1 && method.parameterTypes[headerIndex] != Parameters::class.java) {
+                    // Raise of there is an object mismatch in the function signature of the Controller.
+                    throw ParameterAnnotationNotCorrectException()
+                }
+                // If no parameters are passed except parameters
                 return if (method.parameterTypes.count() == 1 && headerIndex == 0) {
                     method.invoke(
                         controller,
-                        raccoonRequest.headers
+                        raccoonRequest.parameters
                     ) as RaccoonResponse
                 } else if (method.parameterTypes.count() == 1 && headerIndex == -1) {
                     method.invoke(
@@ -93,7 +99,7 @@ open class RaccoonServiceImpl : RaccoonService {
                 } else if (method.parameterTypes.count() == 2 && headerIndex == 0) {
                     method.invoke(
                         controller,
-                        raccoonRequest.headers,
+                        raccoonRequest.parameters,
                         parseRequest(
                             method.parameterTypes[0],
                             raccoonRequest.requestBody.toString()
@@ -106,7 +112,7 @@ open class RaccoonServiceImpl : RaccoonService {
                             method.parameterTypes[0],
                             raccoonRequest.requestBody.toString()
                         ),
-                        raccoonRequest.headers,
+                        raccoonRequest.parameters,
                     ) as RaccoonResponse
                 } else if (headerIndex > 2) {
                     // Location of header not correct exception
