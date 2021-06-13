@@ -12,7 +12,7 @@ import okhttp3.Response
  *
  * @author Joseph James.
  */
-class RetrofitPlugin : Interceptor {
+class RaccoonOkHttpPlugin : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.createRequest()
         return try {

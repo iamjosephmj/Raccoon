@@ -7,5 +7,6 @@ package io.iamjosephmj.raccoon.presentation.response
  */
 data class RaccoonResponse(
     val statusCode: Int,
-    val body: String
+    val body: String,
+    val headers: MutableList<Pair<String, String>> = mutableListOf()
 )

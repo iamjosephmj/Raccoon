@@ -38,7 +38,7 @@ class MainActivityTest {
     @Test
     fun useAppContext() {
         rule.launchActivity(null)
-        Thread.sleep(10000)
+        Thread.sleep(5000)
         // Context of the app under test.
         assert(true)
         rule.activity.finish()

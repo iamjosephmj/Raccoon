@@ -2,7 +2,7 @@ package io.iamjosephmj.raccoon.retrofit
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import io.iamjosephmj.raccoon.presentation.plugins.RetrofitPlugin
+import io.iamjosephmj.raccoon.presentation.plugins.RaccoonOkHttpPlugin
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,7 +16,7 @@ class ToDoApiClass {
             .create()
 
         val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(RetrofitPlugin())
+            .addInterceptor(RaccoonOkHttpPlugin())
             .build()
 
         val retrofit = Retrofit.Builder()
