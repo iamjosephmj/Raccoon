@@ -5,6 +5,7 @@ import androidx.test.rule.ActivityTestRule
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
 import io.iamjosephmj.raccoon.helper.MockService
+import io.iamjosephmj.raccoon.parser.GsonPlugin
 import io.iamjosephmj.raccoon.parser.MoshiPlugin
 import org.junit.After
 import org.junit.Before
@@ -25,7 +26,7 @@ class MainActivityTest {
     fun setup() {
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
-                .setParserType(MoshiPlugin())
+                .addService(MockService::class)
                 .build()
         )
 

@@ -159,3 +159,52 @@ This developer should:
 - Extend the `RaccoonServiceImpl` class
 - Add `@RaccoonService` as the annotation for the Service class.
 - Add `@RaccoonController` as the annotation for mock controller class provider function.
+
+#### `Test class implementation`
+
+```kotlin
+
+@RunWith(AndroidJUnit4::class)
+class MainActivityTest {
+
+    @Before
+    fun setup() {
+       // setup
+        RaccoonStub.setUp(
+                  RaccoonConfig.Builder()
+                      .addService(MockService::class)
+                      .addService(MockService2::class)
+                      .addService(MockService3::class)
+                      .setParserType(GsonPlugin())
+                      .build()
+              )
+        /*
+         * The developer can also use {@see MoshiPlugin} as the parserType as per the project
+         * requirements
+         *
+    }
+
+    /**
+     * You should not launch the activity before the RaccoonStub initialization.
+     * There can be scenarios where the app calls the API on launch. In such cases only launch the
+     * Activity inside the test function
+     */
+    @get:Rule
+    val rule = ActivityTestRule(
+        MainActivity::class.java, false, false
+    )
+
+    @Test
+    fun useAppContext() {
+        // run your test
+    }
+
+    @After
+    fun tearDown() {
+       // cleans up the memory.
+        RaccoonStub.teatDown()
+    }
+
+}
+
+```
