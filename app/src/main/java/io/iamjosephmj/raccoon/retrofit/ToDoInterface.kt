@@ -15,7 +15,7 @@ interface ToDoInterface {
     @GET(Constants.ENDPOINT_TODO)
     suspend fun listRepos(
         @Path(ENDPOINT_TODO_KEY_PAGE) user: Int,
-        @Query(ENDPOINT_TODO_KEY_NAME) username: String
+        @Query(ENDPOINT_TODO_KEY_NAME) userType: String
     ): retrofit2.Response<Response>
 
 }

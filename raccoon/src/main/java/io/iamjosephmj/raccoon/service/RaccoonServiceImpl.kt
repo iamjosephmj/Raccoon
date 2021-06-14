@@ -3,16 +3,13 @@ package io.iamjosephmj.raccoon.service
 import io.iamjosephmj.raccoon.annotations.Params
 import io.iamjosephmj.raccoon.annotations.RaccoonEndpoint
 import io.iamjosephmj.raccoon.controller.RaccoonController
+import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.graph.ControllerGraph
 import io.iamjosephmj.raccoon.core.stub.graph.ServiceGraph
-import io.iamjosephmj.raccoon.exception.ControllerNotFoundException
-import io.iamjosephmj.raccoon.exception.ControllerParameterException
-import io.iamjosephmj.raccoon.exception.EndpointNotFoundException
-import io.iamjosephmj.raccoon.exception.ParameterAnnotationNotCorrectException
+import io.iamjosephmj.raccoon.exception.*
 import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
-import io.iamjosephmj.raccoon.util.GsonUtils
 
 /**
  * This class is build for managing the {@see RaccoonService}
@@ -83,42 +80,46 @@ open class RaccoonServiceImpl : RaccoonService {
                     throw ParameterAnnotationNotCorrectException()
                 }
                 // If no parameters are passed except parameters
-                return if (method.parameterTypes.count() == 1 && headerIndex == 0) {
-                    method.invoke(
-                        controller,
-                        raccoonRequest.parameters
-                    ) as RaccoonResponse
-                } else if (method.parameterTypes.count() == 1 && headerIndex == -1) {
-                    method.invoke(
-                        controller,
-                        parseRequest(
-                            method.parameterTypes[0],
-                            raccoonRequest.requestBody.toString()
-                        )
-                    ) as RaccoonResponse
-                } else if (method.parameterTypes.count() == 2 && headerIndex == 0) {
-                    method.invoke(
-                        controller,
-                        raccoonRequest.parameters,
-                        parseRequest(
-                            method.parameterTypes[0],
-                            raccoonRequest.requestBody.toString()
-                        )
-                    ) as RaccoonResponse
-                } else if (method.parameterTypes.count() == 2 && headerIndex == 1) {
-                    method.invoke(
-                        controller,
-                        parseRequest(
-                            method.parameterTypes[0],
-                            raccoonRequest.requestBody.toString()
-                        ),
-                        raccoonRequest.parameters,
-                    ) as RaccoonResponse
-                } else if (headerIndex > 2) {
-                    // Location of header not correct exception
-                    throw ControllerParameterException()
-                } else {
-                    method.invoke(controller) as RaccoonResponse
+                return try {
+                    if (method.parameterTypes.count() == 1 && headerIndex == 0) {
+                        method.invoke(
+                            controller,
+                            raccoonRequest.parameters
+                        ) as RaccoonResponse
+                    } else if (method.parameterTypes.count() == 1 && headerIndex == -1) {
+                        method.invoke(
+                            controller,
+                            parseRequest(
+                                method.parameterTypes[0],
+                                raccoonRequest.requestBody.toString()
+                            )
+                        ) as RaccoonResponse
+                    } else if (method.parameterTypes.count() == 2 && headerIndex == 0) {
+                        method.invoke(
+                            controller,
+                            raccoonRequest.parameters,
+                            parseRequest(
+                                method.parameterTypes[0],
+                                raccoonRequest.requestBody.toString()
+                            )
+                        ) as RaccoonResponse
+                    } else if (method.parameterTypes.count() == 2 && headerIndex == 1) {
+                        method.invoke(
+                            controller,
+                            parseRequest(
+                                method.parameterTypes[0],
+                                raccoonRequest.requestBody.toString()
+                            ),
+                            raccoonRequest.parameters,
+                        ) as RaccoonResponse
+                    } else if (headerIndex > 2) {
+                        // Location of header not correct exception
+                        throw ControllerParameterException()
+                    } else {
+                        method.invoke(controller) as RaccoonResponse
+                    }
+                } catch (ex: Exception) {
+                    throw ParseException()
                 }
             }
         // throws an exception when the endpoint is not found.
@@ -126,7 +127,7 @@ open class RaccoonServiceImpl : RaccoonService {
     }
 
     private fun parseRequest(type: Class<*>, data: String): Any {
-        return GsonUtils.gson.fromJson(data, type)
+        return RaccoonStub.raccoonParser.getFromString(data, type)
     }
 
 

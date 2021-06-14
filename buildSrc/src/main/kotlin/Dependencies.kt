@@ -21,5 +21,6 @@ object Dependencies {
     const val okHttp = "4.9.0"
     const val reflect = "1.5.10"
     const val gson = "2.9.0"
+    const val moshi = "1.12.0"
 
 }

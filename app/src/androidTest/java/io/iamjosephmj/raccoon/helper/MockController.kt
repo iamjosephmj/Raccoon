@@ -8,7 +8,7 @@ import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 import io.iamjosephmj.raccoon.retrofit.Response
-import io.iamjosephmj.raccoon.util.GsonUtils.buildRaccoonResponse
+import io.iamjosephmj.raccoon.util.Utils.buildRaccoonResponse
 
 class MockController : RaccoonController() {
 

@@ -1,6 +1,6 @@
 package io.iamjosephmj.raccoon.util
 
-import com.google.gson.Gson
+import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
@@ -10,12 +10,9 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.Buffer
 import okio.BufferedSink
+import kotlin.reflect.KClass
 
-object GsonUtils {
-
-    val gson by lazy {
-        Gson()
-    }
+object Utils {
 
     fun Interceptor.Chain.createRequest(): RaccoonRequest {
         val request = request()
@@ -102,9 +99,11 @@ object GsonUtils {
     }
 
     fun Any.buildRaccoonResponse(
-        statusCode: Int
+        statusCode: Int,
     ): RaccoonResponse {
-        val resp = gson.toJson(this)
+
+        val resp = RaccoonStub.raccoonParser.parseToJson(this, this::class as KClass<Any>)
+
         return RaccoonResponse(
             statusCode = statusCode,
             body = resp

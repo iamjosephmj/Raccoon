@@ -9,4 +9,5 @@ object Constants {
     const val ENDPOINT_TODO_KEY_PAGE = "page"
     const val ENDPOINT_TODO_KEY_NAME = "name"
     const val ENDPOINT_TODO = "todos/{$ENDPOINT_TODO_KEY_PAGE}"
+    const val USER_TYPE = "Android"
 }

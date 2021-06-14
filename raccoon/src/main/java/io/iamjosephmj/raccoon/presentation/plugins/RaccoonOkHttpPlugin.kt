@@ -2,8 +2,8 @@ package io.iamjosephmj.raccoon.presentation.plugins
 
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.exception.UrlNotFoundException
-import io.iamjosephmj.raccoon.util.GsonUtils.createRequest
-import io.iamjosephmj.raccoon.util.GsonUtils.createResponse
+import io.iamjosephmj.raccoon.util.Utils.createRequest
+import io.iamjosephmj.raccoon.util.Utils.createResponse
 import okhttp3.Interceptor
 import okhttp3.Response
 
