@@ -181,7 +181,7 @@ class MainActivityTest {
         /*
          * The developer can also use {@see MoshiPlugin} as the parserType as per the project
          * requirements
-         *
+         */
     }
 
     /**
