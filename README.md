@@ -63,6 +63,8 @@ Retrofit users need to add the `RaccoonOkHttpPlugin` as the interceptor
 
 ```
 
+Adding this plugin to the real project doesn't hurt until the `RaccoonStub` class is initialized.
+
 ### `Add Controller Class`
 
 This is one of the core classes that Raccoon library is looking into. Controller class is the place
@@ -208,3 +210,29 @@ class MainActivityTest {
 }
 
 ```
+
+## Contribution, Issues or Future Ideas
+
+If part of Raccoon is not working correctly be sure to file a Github issue. In the issue provide as
+many details as possible. This could include example code or the exact steps that you did so that
+everyone can reproduce the issue. Sample projects are always the best way :). This makes it easy
+for our developers or someone from the open-source community to start working!
+
+If you have a feature idea submit an issue with a feature request or submit a pull request and we
+will work with you to merge it in!
+
+## Contribution guidelines
+
+Contributions are more than welcome!
+
+- You should make sure that all the tests are working properly.
+- You should raise a PR to develop branch
+- Before you raise a PR please make sure your code had no issue from Android studio lint analyzer.
+
+## Please Share & Star the repository to keep me motivated.
+  <a href = "https://github.com/iamjosephmj/flinger/Raccoon">
+     <img src = "https://img.shields.io/github/stars/iamjosephmj/Raccoon" />
+  </a>
+  <a href = "https://twitter.com/iamjosephmj">
+     <img src = "https://img.shields.io/twitter/url?label=follow&style=social&url=https%3A%2F%2Ftwitter.com" />
+  </a>
