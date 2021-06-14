@@ -47,25 +47,95 @@ Add the following to your project's build.gradle.kts file
 ## Basic usage
 
 ### `Add interceptor plugin`
-####`Retrofit`
+#### `Retrofit`
 
 Retrofit users need to add the `RaccoonOkHttpPlugin` as the interceptor
 
 ```kotlin
 
   val okHttpClient = OkHttpClient.Builder()
-            ...
-            ...
             .addInterceptor(RaccoonOkHttpPlugin())
             .build()
 
   val retrofit = Retrofit.Builder()
             .client(okHttpClient)
-            ...
-            ...
             .build()
 
 ```
+
+### `Add Controller Class`
+
+This is one of the core classes that Raccoon library is looking into. Controller class is the place
+were the `Endpoint` definitions are made. Developers can keep the logically related `Endpoints` in
+the same `Controller`
+
+```kotlin
+
+
+class MockController : RaccoonController() {
+
+    override fun setup() {
+        // Do the DI related stuff
+    }
+
+    @RaccoonEndpoint(
+        endpoint = "your endpoint",
+        latency = 100, /* delay in api response delivery */
+        RaccoonRequestType.GET /* user can define their request types here */
+    )
+    fun fetchToDoList(@Params headers: Parameters): RaccoonResponse {
+        return </* Your response object */>
+        .buildRaccoonResponse(statusCode = 200 /* STATUS code of the api response */)
+    }
+
+
+    override fun tearDown() {
+        // clean up memory.
+    }
+}
+
+```
+
+#### `setUp()`
+
+If user wishes to import some objects via DI, this function will be entry point to do the same.
+This function is called before the endpoint endpoint definition is called.
+
+#### `clean()`
+
+This function is the best candidate to free up the memory after the endpoint point definition
+execution. This function is called after the endpoint endpoint definition is called.
+
+#### `Endpoint Definition function`
+
+The user can define any names to the endpoint definition function. The only requirement that the
+library has is that the user should give an `@RaccoonEndpoint` for the same. Take the example above
+example to see the annotation in action.
+
+The Endpoint Definition function has a return type `RaccoonResponse`. The developer can either
+directly create `RaccoonResponse` object with
+
+```kotlin
+
+    RaccoonResponse(
+        statusCode=200,
+        body =/* json string */ "{ ... }"
+    )
+
+```
+
+or they can use the Moshi/Gson supported pojo objects. Raccoon provides a helper extension
+function `buildRaccoonResponse` to do the same
+
+```kotlin
+
+ return </* Your response object */>
+        .buildRaccoonResponse(statusCode = 200 /* STATUS code of the api response */)
+
+```
+
+
+Take a look at the `androidTest` implementation to get more insights on the same.
 
 
 
