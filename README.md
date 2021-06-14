@@ -138,5 +138,24 @@ function `buildRaccoonResponse` to do the same
 Take a look at the `androidTest` implementation to get more insights on the same.
 
 
+### `Add Service Class`
 
+Service class helps the library to create an overall understanding about how to efficiently parse
+through controllers to fetch the endpoint.
 
+```kotlin
+
+@RaccoonService
+class MockService : RaccoonServiceImpl() {
+
+    @RaccoonController
+    fun providesMockController() = MockController::class
+}
+
+```
+
+This developer should:
+
+- Extend the `RaccoonServiceImpl` class
+- Add `@RaccoonService` as the annotation for the Service class.
+- Add `@RaccoonController` as the annotation for mock controller class provider function.
