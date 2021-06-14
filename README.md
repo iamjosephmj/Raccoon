@@ -19,7 +19,7 @@ to do the whole process.
 ## Insights
 
 The integration of this library is soo much compact in such a way that we will the developer
-doesn't need to take much time for the process. We basically need to make 3 additions:
+doesn't need to take much time for the process. We basically need to make main 3 additions:
 
 - Add the Interceptor Plugin
 - Add Service class in the AndroidTest directory
@@ -45,4 +45,28 @@ Add the following to your project's build.gradle.kts file
 ```
 
 ## Basic usage
+
+### `Add interceptor plugin`
+####`Retrofit`
+
+Retrofit users need to add the `RaccoonOkHttpPlugin` as the interceptor
+
+```kotlin
+
+  val okHttpClient = OkHttpClient.Builder()
+            ...
+            ...
+            .addInterceptor(RaccoonOkHttpPlugin())
+            .build()
+
+  val retrofit = Retrofit.Builder()
+            .client(okHttpClient)
+            ...
+            ...
+            .build()
+
+```
+
+
+
 
