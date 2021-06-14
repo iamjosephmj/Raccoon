@@ -1,7 +1,7 @@
 package io.iamjosephmj.raccoon.presentation.request
 
 /**
- * Request type store
+ * Http request type store
  *
  * @author Joseph James.
  */

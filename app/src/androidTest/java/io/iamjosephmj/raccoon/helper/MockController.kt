@@ -1,5 +1,6 @@
 package io.iamjosephmj.raccoon.helper
 
+import io.iamjosephmj.raccoon.Constants.BASE_URL
 import io.iamjosephmj.raccoon.annotations.Params
 import io.iamjosephmj.raccoon.annotations.RaccoonEndpoint
 import io.iamjosephmj.raccoon.controller.RaccoonController
@@ -16,11 +17,10 @@ class MockController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "https://jsonplaceholder.typicode.com/todos/1",
+        endpoint = "${BASE_URL}todos/1",
         latency = 100,
         RaccoonRequestType.GET
     )
-
     fun fetchToDoList(@Params headers: Parameters): RaccoonResponse {
         return Response(
             id = 10,
