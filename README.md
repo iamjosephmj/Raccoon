@@ -65,9 +65,11 @@ Add the following to your project's root build.gradle.kts file
 
 ```kotlin
 
-    repositories {
-	      maven("https://jitpack.io")
-     }
+repositories {
+	
+     maven("https://jitpack.io")
+    
+ }
 
 ```
 
@@ -75,7 +77,7 @@ Add the following to your project's build.gradle.kts file
 
 ```kotlin
 
-	    implementation("com.github.iamjosephmj:Raccoon:1.0.0")
+implementation("com.github.iamjosephmj:Raccoon:1.0.0")
 
 ```
 
