@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package io.iamjosephmj.raccoon.retrofit
+package io.iamjosephmj.raccoonsample.retrofit
 
 import com.google.gson.annotations.SerializedName
 

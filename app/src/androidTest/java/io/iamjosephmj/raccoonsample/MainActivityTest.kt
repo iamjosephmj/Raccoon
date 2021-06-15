@@ -1,10 +1,10 @@
-package io.iamjosephmj.raccoon
+package io.iamjosephmj.raccoonsample
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
-import io.iamjosephmj.raccoon.helper.MockService
+import io.iamjosephmj.raccoonsample.helper.MockService
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
