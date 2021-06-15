@@ -2,7 +2,7 @@
 
 
 
-![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+![example workflow](https://github.com/github/iamjosephmj/Raccoon/actions/workflows/workflow.yml/badge.svg)
 
 <a href = "https://github.com/iamjosephmj/Raccoon">
     <img src = "https://img.shields.io/github/stars/iamjosephmj/Raccoon" />
