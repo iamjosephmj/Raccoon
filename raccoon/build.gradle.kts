@@ -1,5 +1,3 @@
-import org.apache.commons.logging.LogFactory.release
-
 plugins {
     id("com.android.library")
     id("kotlin-android")
@@ -14,21 +12,11 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 30
-        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-        debug {
-            isMinifyEnabled = false
-
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -46,6 +34,7 @@ android {
 
 dependencies {
 
+    implementation("com.android.support:multidex:${Dependencies.multiDex}")
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
     implementation("com.squareup.okhttp3:okhttp:${Dependencies.okHttp}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${Dependencies.reflect}")
@@ -57,15 +46,32 @@ dependencies {
 
 }
 
-
-
-afterEvaluate {
-    publishing {
-        publications {
-            create<MavenPublication>("jitpack") {
-                groupId = "io.iamjosephmj.raccoon"
-                artifactId = "release"
+publishing {
+    publications {
+        create<MavenPublication>("Raccoon") {
+            pom {
+                name.set("Raccoon")
+                description.set("This library is a framework to mock realtime request in the Android UI test")
+                url.set("https://iamjosephmj.github.io/Raccoon/")
                 version = "1.0.0"
+                licenses {
+                    license {
+                        name.set("MIT License")
+                        url.set("https://github.com/iamjosephmj/Raccoon/blob/main/LICENSE")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("iamjosephmj")
+                        name.set("Joseph James")
+                        email.set("iamjosephmj@gmail.com")
+                    }
+                }
+                scm {
+                    connection.set("scm:https://github.com/iamjosephmj/Raccoon.git")
+                    developerConnection.set("scm:git@github.com:iamjosephmj/Raccoon.git")
+                    url.set("https://iamjosephmj.github.io/Raccoon/")
+                }
             }
         }
     }

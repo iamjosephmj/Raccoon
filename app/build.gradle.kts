@@ -13,13 +13,11 @@ android {
         targetSdk = 30
         versionCode = 1
         versionName = "1.0"
-        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -38,6 +36,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":raccoon")))
+    implementation("com.android.support:multidex:${Dependencies.multiDex}")
 
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
     implementation("androidx.appcompat:appcompat:${Dependencies.appcompat}")
