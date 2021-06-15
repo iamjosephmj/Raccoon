@@ -1,8 +1,9 @@
-package io.iamjosephmj.raccoon.retrofit
+package io.iamjosephmj.raccoonsample.retrofit
 
-import io.iamjosephmj.raccoon.Constants
-import io.iamjosephmj.raccoon.Constants.ENDPOINT_TODO_KEY_NAME
-import io.iamjosephmj.raccoon.Constants.ENDPOINT_TODO_KEY_PAGE
+import io.iamjosephmj.raccoonsample.Constants
+import io.iamjosephmj.raccoonsample.Constants.ENDPOINT_TODO_KEY_NAME
+import io.iamjosephmj.raccoonsample.Constants.ENDPOINT_TODO_KEY_PAGE
+import io.iamjosephmj.raccoonsample.retrofit.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path

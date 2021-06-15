@@ -1,8 +1,8 @@
-package io.iamjosephmj.raccoon.retrofit
+package io.iamjosephmj.raccoonsample.retrofit
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import io.iamjosephmj.raccoon.Constants
+import io.iamjosephmj.raccoonsample.Constants
 import io.iamjosephmj.raccoon.presentation.plugins.RaccoonOkHttpPlugin
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

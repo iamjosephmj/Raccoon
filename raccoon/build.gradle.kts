@@ -55,12 +55,12 @@ dependencies {
 
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("jitpack") {
-            groupId = "io.iamjosephmj.raccoon"
-            artifactId = "release"
-            version = "1.0.0"
+    publishing {
+        publications {
+            create<MavenPublication>("jitpack") {
+                groupId = "io.iamjosephmj.raccoon"
+                artifactId = "release"
+                version = "1.0.0"
+            }
         }
     }
-}
