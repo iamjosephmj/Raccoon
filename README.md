@@ -1,6 +1,13 @@
 # Raccoon - Work-in-progress
 
 
+
+![example workflow](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
+<a href = "https://github.com/iamjosephmj/Raccoon">
+    <img src = "https://img.shields.io/github/stars/iamjosephmj/Raccoon" />
+ </a>
+
 ## Medium Articles
 
 Checkout these articles to get more insights about this library:
