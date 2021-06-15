@@ -8,7 +8,7 @@ object Dependencies {
     const val material = "1.3.0"
     const val constraintlayout = "2.0.4"
     const val junit = "1.1.2"
-
+    const val raccoonJunit = "4.13.2"
 
     const val espresso = "3.3.0"
     const val runner = "1.3.0"
