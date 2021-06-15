@@ -11,6 +11,7 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 30
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,7 +50,6 @@ dependencies {
     implementation("com.squareup.moshi:moshi:${Dependencies.moshi}")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:${Dependencies.moshi}")
     implementation("com.squareup.moshi:moshi-kotlin:${Dependencies.moshi}")
-
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:${Dependencies.raccoonJunit}")
 
 }
