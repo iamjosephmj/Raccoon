@@ -6,9 +6,13 @@
       <img src = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml/badge.svg" />
  </a>
   
-<a href = "https://github.com/iamjosephmj/Raccoon">
+ <a href = "https://github.com/iamjosephmj/Raccoon">
     <img src = "https://img.shields.io/github/stars/iamjosephmj/Raccoon" />
  </a>
+ 
+ <a href = "https://github.com/iamjosephmj/Raccoon/blob/master/LICENSE">
+     <img src = "https://img.shields.io/github/license/iamjosephmj/Raccoon" />
+ </a> 
 
 ## Medium Articles
 
