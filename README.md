@@ -2,7 +2,7 @@
 
 
 
- <a href = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml">
+ <a href = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow">
       <img src = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml/badge.svg" />
  </a>
   
