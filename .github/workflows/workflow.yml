@@ -19,6 +19,22 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew raccoon:lint
 
+  assemble:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Clean with Gradle
+        run: ./gradlew clean
+      - name: Build with Gradle
+        run: ./gradlew raccoon:assemble
+
+
   build:
     runs-on: ubuntu-latest
     steps:
