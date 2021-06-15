@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package io.iamjosephmj.raccoon.helper
 
 import io.iamjosephmj.raccoon.annotations.Params
@@ -8,6 +10,7 @@ import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequestType
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
 
+@Suppress("unused")
 class MoshiController : RaccoonController() {
 
     override fun setup() {
@@ -69,8 +72,8 @@ class MoshiController : RaccoonController() {
         RaccoonRequestType.POST
     )
     fun apiInvocationPost(
-        @Params headers: Parameters,
-        MoshiRequestBody: MoshiRequestBody
+        MoshiRequestBody: MoshiRequestBody,
+        @Params headers: Parameters
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
@@ -133,6 +136,20 @@ class MoshiController : RaccoonController() {
     fun apiInvocationUpdate(
         @Params headers: Parameters,
         MoshiRequestBody: MoshiRequestBody
+    ): RaccoonResponse {
+        return RaccoonResponse(
+            statusCode = 200,
+            body = "{success}"
+        )
+    }
+
+    @RaccoonEndpoint(
+        endpoint = "moshi-test-no-request-object",
+        latency = 100,
+        requestType = RaccoonRequestType.UPDATE
+    )
+    fun apiInvocationNoRequestObj(
+        @Params headers: Parameters
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,

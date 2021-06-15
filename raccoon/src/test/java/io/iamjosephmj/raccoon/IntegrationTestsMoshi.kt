@@ -214,6 +214,31 @@ class IntegrationTestsMoshi {
     }
 
 
+    @Test
+    fun noRequestObject() {
+        val request = RaccoonRequest(
+            requestBody = moshiPlugin.parseToJson(
+                MoshiRequestBody(id = 10),
+                MoshiRequestBody::class
+            ),
+            requestType = RaccoonRequestType.POST,
+            endpoint = "moshi-test-no-request-object",
+            parameters = Parameters()
+        )
+
+        val isExceptionOccurred = try {
+            RaccoonStub.getServiceSwitch().execute(
+                request
+            )
+            false
+        } catch (ex: EndpointNotFoundException) {
+            true
+        }
+
+        assertTrue(isExceptionOccurred)
+    }
+
+
     @After
     fun cleanUp() {
         RaccoonStub.teatDown()
