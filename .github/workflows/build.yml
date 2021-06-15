@@ -1,5 +1,3 @@
-workflow: Android CI
-
 on:
   push:
     branches: [ main ]
