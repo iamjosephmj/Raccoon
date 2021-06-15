@@ -1,7 +1,10 @@
+import org.apache.commons.logging.LogFactory.release
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
+    `maven-publish`
 }
 
 android {
@@ -52,4 +55,18 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:${Dependencies.moshi}")
     testImplementation("junit:junit:${Dependencies.raccoonJunit}")
 
+}
+
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("jitpack") {
+                groupId = "io.iamjosephmj.raccoon"
+                artifactId = "release"
+                version = "1.0.0"
+            }
+        }
+    }
 }
