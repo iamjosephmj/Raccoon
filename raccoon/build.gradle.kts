@@ -44,6 +44,7 @@ android {
 
 dependencies {
 
+    implementation("com.android.support:multidex:${Dependencies.multiDex}")
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
     implementation("com.squareup.okhttp3:okhttp:${Dependencies.okHttp}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${Dependencies.reflect}")
@@ -55,6 +56,7 @@ dependencies {
 
 }
 
+afterEvaluate {
     publishing {
         publications {
             create<MavenPublication>("jitpack") {
@@ -64,3 +66,4 @@ dependencies {
             }
         }
     }
+}
