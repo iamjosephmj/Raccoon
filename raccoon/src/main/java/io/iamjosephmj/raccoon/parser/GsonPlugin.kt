@@ -9,11 +9,11 @@ class GsonPlugin : RaccoonParser {
         Gson()
     }
 
-    override fun getFromString(data: String, classType: Class<*>): Any {
+    override fun <T : Any> getFromString(data: String, classType: Class<T>): T {
         return gson.fromJson(data, classType)
     }
 
-    override fun parseToJson(any: Any, kClass: KClass<Any>): String {
+    override fun <T : Any> parseToJson(any: T, kClass: KClass<T>): String {
         return gson.toJson(any)
     }
 }

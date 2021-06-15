@@ -1,13 +1,9 @@
 package io.iamjosephmj.raccoon
 
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
 import io.iamjosephmj.raccoon.exception.EndpointNotFoundException
 import io.iamjosephmj.raccoon.helper.MockService
-import io.iamjosephmj.raccoon.helper.request.MoshiAdapter
 import io.iamjosephmj.raccoon.helper.request.MoshiRequestBody
 import io.iamjosephmj.raccoon.parser.MoshiPlugin
 import io.iamjosephmj.raccoon.presentation.request.Parameters
@@ -22,14 +18,12 @@ import org.junit.Test
 
 class IntegrationTestsMoshi {
 
-    private lateinit var moshi: JsonAdapter<MoshiRequestBody>
+    private val moshiPlugin by lazy {
+        MoshiPlugin()
+    }
 
     @Before
     fun setupStub() {
-        moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build().adapter(MoshiRequestBody::class.java)
-
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(MockService::class)
@@ -110,7 +104,10 @@ class IntegrationTestsMoshi {
     @Test
     fun testPostRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = moshi.toJson(MoshiRequestBody(id = 10)),
+            requestBody = moshiPlugin.parseToJson(
+                MoshiRequestBody(id = 10),
+                MoshiRequestBody::class
+            ),
             requestType = RaccoonRequestType.POST,
             endpoint = "moshi-test-post-request",
             parameters = Parameters()
@@ -125,7 +122,10 @@ class IntegrationTestsMoshi {
     @Test
     fun testPutRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = moshi.toJson(MoshiRequestBody(id = 10)),
+            requestBody = moshiPlugin.parseToJson(
+                MoshiRequestBody(id = 10),
+                MoshiRequestBody::class
+            ),
             requestType = RaccoonRequestType.PUT,
             endpoint = "moshi-test-put-request",
             parameters = Parameters()
@@ -140,7 +140,10 @@ class IntegrationTestsMoshi {
     @Test
     fun testDeleteRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = moshi.toJson(MoshiRequestBody(id = 10)),
+            requestBody = moshiPlugin.parseToJson(
+                MoshiRequestBody(id = 10),
+                MoshiRequestBody::class
+            ),
             requestType = RaccoonRequestType.DELETE,
             endpoint = "moshi-test-delete-request",
             parameters = Parameters()
@@ -155,7 +158,10 @@ class IntegrationTestsMoshi {
     @Test
     fun testPatchRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = moshi.toJson(MoshiRequestBody(id = 10)),
+            requestBody = moshiPlugin.parseToJson(
+                MoshiRequestBody(id = 10),
+                MoshiRequestBody::class
+            ),
             requestType = RaccoonRequestType.PATCH,
             endpoint = "moshi-test-patch-request",
             parameters = Parameters()
@@ -170,7 +176,10 @@ class IntegrationTestsMoshi {
     @Test
     fun testUpdateRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = moshi.toJson(MoshiRequestBody(id = 10)),
+            requestBody = moshiPlugin.parseToJson(
+                MoshiRequestBody(id = 10),
+                MoshiRequestBody::class
+            ),
             requestType = RaccoonRequestType.UPDATE,
             endpoint = "moshi-test-update-request",
             parameters = Parameters()

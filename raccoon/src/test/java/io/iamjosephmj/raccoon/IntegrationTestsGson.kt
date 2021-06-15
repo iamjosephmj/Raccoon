@@ -1,6 +1,5 @@
 package io.iamjosephmj.raccoon
 
-import com.google.gson.Gson
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.config.RaccoonConfig
 import io.iamjosephmj.raccoon.exception.EndpointNotFoundException
@@ -18,6 +17,10 @@ import org.junit.Test
 
 
 class IntegrationTestsGson {
+
+    private val gsonPlugin by lazy {
+        GsonPlugin()
+    }
 
     @Before
     fun setupStub() {
@@ -101,7 +104,7 @@ class IntegrationTestsGson {
     @Test
     fun testPostRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = Gson().toJson(GsonRequestBody(id = 10)),
+            requestBody = gsonPlugin.parseToJson(GsonRequestBody(id = 10), GsonRequestBody::class),
             requestType = RaccoonRequestType.POST,
             endpoint = "test-post-request",
             parameters = Parameters()
@@ -116,7 +119,7 @@ class IntegrationTestsGson {
     @Test
     fun testPutRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = Gson().toJson(GsonRequestBody(id = 10)),
+            requestBody = gsonPlugin.parseToJson(GsonRequestBody(id = 10), GsonRequestBody::class),
             requestType = RaccoonRequestType.PUT,
             endpoint = "test-put-request",
             parameters = Parameters()
@@ -131,7 +134,7 @@ class IntegrationTestsGson {
     @Test
     fun testDeleteRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = Gson().toJson(GsonRequestBody(id = 10)),
+            requestBody = gsonPlugin.parseToJson(GsonRequestBody(id = 10), GsonRequestBody::class),
             requestType = RaccoonRequestType.DELETE,
             endpoint = "test-delete-request",
             parameters = Parameters()
@@ -146,7 +149,7 @@ class IntegrationTestsGson {
     @Test
     fun testPatchRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = Gson().toJson(GsonRequestBody(id = 10)),
+            requestBody = gsonPlugin.parseToJson(GsonRequestBody(id = 10), GsonRequestBody::class),
             requestType = RaccoonRequestType.PATCH,
             endpoint = "test-patch-request",
             parameters = Parameters()
@@ -161,7 +164,7 @@ class IntegrationTestsGson {
     @Test
     fun testUpdateRequestSuccess() {
         val request = RaccoonRequest(
-            requestBody = Gson().toJson(GsonRequestBody(id = 10)),
+            requestBody = gsonPlugin.parseToJson(GsonRequestBody(id = 10), GsonRequestBody::class),
             requestType = RaccoonRequestType.UPDATE,
             endpoint = "test-update-request",
             parameters = Parameters()

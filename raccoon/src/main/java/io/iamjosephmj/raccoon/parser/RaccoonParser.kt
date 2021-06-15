@@ -4,8 +4,8 @@ import kotlin.reflect.KClass
 
 interface RaccoonParser {
 
-    fun getFromString(data: String, classType: Class<*>):Any
+    fun <T : Any> getFromString(data: String, classType: Class<T>): T
 
-    fun parseToJson(any: Any, kClass: KClass<Any>): String
+    fun <T : Any> parseToJson(any: T, kClass: KClass<T>): String
 
 }
