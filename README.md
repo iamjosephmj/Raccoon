@@ -23,11 +23,16 @@
  <a href = "https://github.com/iamjosephmj/Raccoon/blob/master/LICENSE">
      <img src = "https://img.shields.io/github/license/iamjosephmj/Raccoon" />
  </a> 
-   <a href = "https://twitter.com/iamjosephmj">
+
+  <a href = "https://jitpack.io/#iamjosephmj/Raccoon">
+     <img src = "https://jitpack.io/v/iamjosephmj/Raccoon.svg" />
+  </a>
+ 
+ <a href = "https://twitter.com/iamjosephmj">
      <img src = "https://img.shields.io/twitter/url?label=follow&style=social&url=https%3A%2F%2Ftwitter.com" />
   </a>
 
- </div>
+</div>
 
 ## Medium Articles
 
@@ -60,7 +65,7 @@ Add the following to your project's root build.gradle.kts file
 
 ```kotlin
 
-    TODO:
+TODO:
 
 ```
 
@@ -68,7 +73,7 @@ Add the following to your project's build.gradle.kts file
 
 ```kotlin
 
-    TODO:
+TODO:
 
 ```
 
