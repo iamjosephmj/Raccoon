@@ -10,5 +10,6 @@ enum class RaccoonRequestType {
     POST,
     PUT,
     DELETE,
-    PATCH
+    PATCH,
+    UPDATE
 }

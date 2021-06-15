@@ -92,6 +92,9 @@ object Utils {
             "PATCH" -> {
                 RaccoonRequestType.PATCH
             }
+            "UPDATE" -> {
+                RaccoonRequestType.UPDATE
+            }
             else -> {
                 RaccoonRequestType.GET
             }

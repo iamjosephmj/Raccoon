@@ -1,6 +1,9 @@
+import com.android.builder.dexing.isProguardRule
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -16,6 +19,14 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+        debug {
+            isMinifyEnabled = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -38,4 +49,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${Dependencies.reflect}")
     implementation("com.squareup.retrofit2:converter-gson:${Dependencies.gson}")
     implementation("com.squareup.moshi:moshi:${Dependencies.moshi}")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:${Dependencies.moshi}")
+    implementation("com.squareup.moshi:moshi-kotlin:${Dependencies.moshi}")
+
+    testImplementation("junit:junit:4.13.2")
+
 }

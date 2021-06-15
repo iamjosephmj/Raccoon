@@ -1,12 +1,15 @@
 package io.iamjosephmj.raccoon.parser
 
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import io.iamjosephmj.raccoon.exception.ParseException
 import kotlin.reflect.KClass
 
 class MoshiPlugin : RaccoonParser {
 
-    private val moshi: Moshi = Moshi.Builder().build()
+    private val moshi: Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     override fun getFromString(data: String, classType: Class<*>): Any {
         val adapter = moshi.adapter(classType)

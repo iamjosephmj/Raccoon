@@ -6,7 +6,10 @@ import io.iamjosephmj.raccoon.controller.RaccoonController
 import io.iamjosephmj.raccoon.core.stub.RaccoonStub
 import io.iamjosephmj.raccoon.core.stub.graph.ControllerGraph
 import io.iamjosephmj.raccoon.core.stub.graph.ServiceGraph
-import io.iamjosephmj.raccoon.exception.*
+import io.iamjosephmj.raccoon.exception.ControllerParameterException
+import io.iamjosephmj.raccoon.exception.EndpointNotFoundException
+import io.iamjosephmj.raccoon.exception.ParameterAnnotationNotCorrectException
+import io.iamjosephmj.raccoon.exception.ParseException
 import io.iamjosephmj.raccoon.presentation.request.Parameters
 import io.iamjosephmj.raccoon.presentation.request.RaccoonRequest
 import io.iamjosephmj.raccoon.presentation.response.RaccoonResponse
@@ -41,8 +44,9 @@ open class RaccoonServiceImpl : RaccoonService {
                                 .last()
                         }"
                 ]?.forEach { metaData ->
-                    isControllerAvailable = raccoonRequest.endpoint == metaData.endpoint &&
-                            metaData.requestType == raccoonRequest.requestType
+                    if (!isControllerAvailable)
+                        isControllerAvailable = raccoonRequest.endpoint == metaData.endpoint &&
+                                metaData.requestType == raccoonRequest.requestType
                 }
                 isControllerAvailable
             }
@@ -52,7 +56,7 @@ open class RaccoonServiceImpl : RaccoonService {
             }
 
         // Exception thrown for controller not found scenario
-        throw ControllerNotFoundException()
+        throw EndpointNotFoundException()
     }
 
     override fun execute(
@@ -63,7 +67,9 @@ open class RaccoonServiceImpl : RaccoonService {
         controller.javaClass.methods
             // Filter based on annotation.
             .filter { method ->
-                method.getAnnotation(RaccoonEndpoint::class.java) != null
+                method.getAnnotation(RaccoonEndpoint::class.java) != null &&
+                        method.getAnnotation(RaccoonEndpoint::class.java).endpoint == raccoonRequest.endpoint &&
+                        method.getAnnotation(RaccoonEndpoint::class.java).requestType == raccoonRequest.requestType
             }.forEach { method ->
 
                 // TODO: room to introduce request related parameters
@@ -99,7 +105,7 @@ open class RaccoonServiceImpl : RaccoonService {
                             controller,
                             raccoonRequest.parameters,
                             parseRequest(
-                                method.parameterTypes[0],
+                                method.parameterTypes[1],
                                 raccoonRequest.requestBody.toString()
                             )
                         ) as RaccoonResponse

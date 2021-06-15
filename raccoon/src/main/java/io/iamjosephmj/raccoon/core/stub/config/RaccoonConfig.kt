@@ -15,12 +15,10 @@ class RaccoonConfig(
     val raccoonParserPlugin: RaccoonParser = GsonPlugin()
 ) {
 
-    private constructor(builder: Builder) : this(builder.serviceClasses, builder.raccoonParserType)
-
     class Builder {
-        val serviceClasses: MutableList<KClass<out RaccoonService>> = mutableListOf()
+        private val serviceClasses: MutableList<KClass<out RaccoonService>> = mutableListOf()
 
-        var raccoonParserType: RaccoonParser = GsonPlugin()
+        private var raccoonParserType: RaccoonParser = GsonPlugin()
 
         fun addService(service: KClass<out RaccoonService>): Builder {
             serviceClasses.add(service)
