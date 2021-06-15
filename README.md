@@ -2,17 +2,27 @@
 
 
 
- <a href = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml">
-      <img src = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml/badge.svg" />
+<div align="center">
+ <a href = "https://github.com/iamjosephmj/Raccoon/actions/workflows/android.yml">
+      <img src = "https://github.com/iamjosephmj/Raccoon/actions/workflows/android.yml/badge.svg" />
  </a>
   
  <a href = "https://github.com/iamjosephmj/Raccoon">
     <img src = "https://img.shields.io/github/stars/iamjosephmj/Raccoon" />
  </a>
  
+ <a href = "https://github.com/iamjosephmj/Raccoon/network/">
+    <img src = "https://img.shields.io/github/forks/iamjosephmj/Raccoon" />
+  </a>
+
+ <a href = "https://github.com/iamjosephmj/Raccoon/issues">
+     <img src = "https://img.shields.io/github/issues/iamjosephmj/Raccoon" />
+ </a>  
+ 
  <a href = "https://github.com/iamjosephmj/Raccoon/blob/master/LICENSE">
      <img src = "https://img.shields.io/github/license/iamjosephmj/Raccoon" />
  </a> 
+ </div>
 
 ## Medium Articles
 
