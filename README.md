@@ -2,8 +2,8 @@
 
 
 
- <a href = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml">
-      <img src = "https://github.com/iamjosephmj/Raccoon/actions/workflows/workflow.yml/badge.svg" />
+ <a href = "https://github.com/iamjosephmj/Raccoon/actions/workflows/android.yml">
+      <img src = "https://github.com/iamjosephmj/Raccoon/actions/workflows/android.yml/badge.svg" />
  </a>
   
  <a href = "https://github.com/iamjosephmj/Raccoon">
