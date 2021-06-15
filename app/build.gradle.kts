@@ -41,6 +41,7 @@ dependencies {
 
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
     implementation("androidx.appcompat:appcompat:${Dependencies.appcompat}")
+    implementation("com.google.android.material:material:${Dependencies.material}")
     implementation("androidx.constraintlayout:constraintlayout:${Dependencies.constraintlayout}")
 
 
