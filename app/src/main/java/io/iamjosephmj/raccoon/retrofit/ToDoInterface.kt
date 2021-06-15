@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 interface ToDoInterface {
 
-    @Headers(*["user-agent: mock"])
+    @Headers("user-agent: mock")
     @GET(Constants.ENDPOINT_TODO)
     suspend fun listRepos(
         @Path(ENDPOINT_TODO_KEY_PAGE) user: Int,

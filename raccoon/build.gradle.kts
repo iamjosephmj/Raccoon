@@ -1,5 +1,3 @@
-import com.android.builder.dexing.isProguardRule
-
 plugins {
     id("com.android.library")
     id("kotlin-android")
