@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.lifecycleScope
-import io.iamjosephmj.raccoon.R
 import io.iamjosephmj.raccoonsample.retrofit.ToDoApiClass
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
