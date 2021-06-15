@@ -23,6 +23,10 @@
  <a href = "https://github.com/iamjosephmj/Raccoon/blob/master/LICENSE">
      <img src = "https://img.shields.io/github/license/iamjosephmj/Raccoon" />
  </a> 
+   <a href = "https://twitter.com/iamjosephmj">
+     <img src = "https://img.shields.io/twitter/url?label=follow&style=social&url=https%3A%2F%2Ftwitter.com" />
+  </a>
+
  </div>
 
 ## Medium Articles
