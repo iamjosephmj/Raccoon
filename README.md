@@ -13,7 +13,7 @@ Checkout these articles to get more insights about this library:
 There has been different ways to mock the response from an API call, We do have a lot of good frameworks
 for this purpose. But, what if we need to give back a mock response according to the request and its
 parameters. That is what this library is all about. Raccoon is an interceptor plugin that will help the
-developer to mock a response back according to the request. It uses Reflection apis under the hood
+developer to mock a response back according to the request. The library uses Reflection apis under the hood
 to do the whole process.
 
 ## Insights
