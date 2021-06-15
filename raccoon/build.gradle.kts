@@ -48,7 +48,7 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenJava") {
+        create<MavenPublication>("Raccoon") {
             pom {
                 name.set("Raccoon")
                 description.set("This library is a framework to mock realtime request in the Android UI test")
