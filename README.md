@@ -230,7 +230,7 @@ Contributions are more than welcome!
 - Before you raise a PR please make sure your code had no issue from Android studio lint analyzer.
 
 ## Please Share & Star the repository to keep me motivated.
-  <a href = "https://github.com/iamjosephmj/flinger/Raccoon">
+  <a href = "https://github.com/iamjosephmj/Raccoon">
      <img src = "https://img.shields.io/github/stars/iamjosephmj/Raccoon" />
   </a>
   <a href = "https://twitter.com/iamjosephmj">
