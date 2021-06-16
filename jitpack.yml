@@ -1,2 +1,6 @@
 jdk:
   - openjdk11
+
+install:
+  - FILE="-Dfile=aars/raccoon-1.0.2.aar"
+  - mvn install:install-file $FILE -DgroupId=com.github.iamjosephmj -DartifactId=raccoon -Dversion=1.0.2 -Dpackaging=aar -DgeneratePom=true
