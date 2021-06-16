@@ -69,9 +69,15 @@ object Utils {
 
 
     private fun Headers.toPair(): List<Pair<String, String>> {
-        return map { header ->
-            header
-        }
+        val pairs = mutableListOf<Pair<String, String>>()
+
+        val newPair = names().map { name ->
+            Pair(name, get(name) ?: "")
+        }.toMutableList()
+
+        pairs.addAll(newPair)
+        return pairs
+
     }
 
     private fun Request.fetchRequestType(): RaccoonRequestType {
