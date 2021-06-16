@@ -57,7 +57,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.iamjosephmj.raccoon'
                 artifactId = 'release'
-                version = '1.0.3'
+                version = '1.0.4'
             }
             // Creates a Maven publication called “debug”.
             debug(MavenPublication) {
@@ -65,7 +65,7 @@ afterEvaluate {
                 from components.debug
                 groupId = 'com.iamjosephmj.raccoon'
                 artifactId = 'release'
-                version = '1.0.3'
+                version = '1.0.4'
             }
         }
     }
