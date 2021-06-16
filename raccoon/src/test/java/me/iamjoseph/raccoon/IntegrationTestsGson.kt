@@ -199,6 +199,22 @@ class IntegrationTestsGson {
     }
 
 
+    @Test
+    fun testUpdateHeadersSuccess() {
+        val request = RaccoonRequest(
+            requestBody = gsonPlugin.parseToJson(GsonRequestBody(id = 10), GsonRequestBody::class),
+            requestType = RaccoonRequestType.POST,
+            endpoint = "test-header-request",
+            parameters = Parameters()
+        )
+
+        val response = RaccoonStub.getServiceSwitch().execute(
+            request
+        )
+        assertSame(response.parameters.headers[0].second, "{success}")
+    }
+
+
     @After
     fun cleanUp() {
         RaccoonStub.teatDown()

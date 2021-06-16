@@ -46,17 +46,19 @@ object Utils {
     }
 
     fun RaccoonResponse.createResponse(request: Request): Response {
-        return Response.Builder()
+        val response = Response.Builder()
             .code(this.statusCode)
             .request(request)
             .message(this.body)
             .protocol(Protocol.HTTP_2)
-            .addHeader("content-type", "application/json")
             .body(
                 this.body.toByteArray()
                     .toResponseBody("application/json".toMediaTypeOrNull())
             )
-            .build()
+        parameters.headers.forEach { header ->
+            response.addHeader(header.first, header.second)
+        }
+        return response.build()
     }
 
     private fun String.trimDownToRequestBody(): String {
@@ -109,13 +111,15 @@ object Utils {
 
     fun Any.buildRaccoonResponse(
         statusCode: Int,
+        parameters: Parameters = Parameters()
     ): RaccoonResponse {
 
         val resp = RaccoonStub.raccoonParser.parseToJson(this, this::class as KClass<Any>)
 
         return RaccoonResponse(
             statusCode = statusCode,
-            body = resp
+            body = resp,
+            parameters = parameters
         )
     }
 }

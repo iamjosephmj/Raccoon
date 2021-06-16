@@ -140,6 +140,24 @@ class GsonController : RaccoonController() {
         )
     }
 
+    @RaccoonEndpoint(
+        endpoint = "test-header-request",
+        latency = 100,
+        requestType = RaccoonRequestType.POST
+    )
+    fun apiInvocationHeader(
+        @Params headers: Parameters,
+        gsonRequestBody: GsonRequestBody
+    ): RaccoonResponse {
+        return RaccoonResponse(
+            statusCode = 200,
+            body = "{success}",
+            parameters = Parameters(
+                headers = listOf(Pair("header-test", "{success}"))
+            )
+        )
+    }
+
 
     override fun tearDown() {
         // clean up memory.
