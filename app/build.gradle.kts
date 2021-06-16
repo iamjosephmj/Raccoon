@@ -8,7 +8,7 @@ android {
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
-        applicationId = "io.iamjosephmj.raccoon"
+        applicationId = "me.iamjoseph.raccoon"
         minSdk = 21
         targetSdk = 30
         versionCode = 1
@@ -36,6 +36,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":raccoon")))
+
     implementation("com.android.support:multidex:${Dependencies.multiDex}")
 
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")

@@ -1,5 +1,7 @@
 package me.iamjoseph.raccoon.presentation.response
 
+import me.iamjoseph.raccoon.presentation.request.Parameters
+
 /**
  * Raccoon Response blueprint.
  *
@@ -8,4 +10,5 @@ package me.iamjoseph.raccoon.presentation.response
 data class RaccoonResponse(
     val statusCode: Int,
     val body: String,
+    val parameters: Parameters = Parameters()
 )
