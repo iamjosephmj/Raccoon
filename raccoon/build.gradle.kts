@@ -49,30 +49,9 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("Raccoon") {
-            pom {
-                name.set("Raccoon")
-                description.set("This library is a framework to mock realtime request in the Android UI test")
-                url.set("https://iamjosephmj.github.io/Raccoon/")
-                version = "1.0.0"
-                licenses {
-                    license {
-                        name.set("MIT License")
-                        url.set("https://github.com/iamjosephmj/Raccoon/blob/main/LICENSE")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("iamjosephmj")
-                        name.set("Joseph James")
-                        email.set("iamjosephmj@gmail.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:https://github.com/iamjosephmj/Raccoon.git")
-                    developerConnection.set("scm:git@github.com:iamjosephmj/Raccoon.git")
-                    url.set("https://iamjosephmj.github.io/Raccoon/")
-                }
-            }
+            groupId = "com.github.iamjosephmj"
+            artifactId = "raccoon"
+            version = "1.0.2"
         }
     }
 }
