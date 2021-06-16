@@ -18,7 +18,7 @@ jobs:
           java-version: 11
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
+      - name: Lint with Gradle
         run: ./gradlew raccoon:lint
 
   assemble:
@@ -33,7 +33,7 @@ jobs:
         run: chmod +x gradlew
       - name: Clean with Gradle
         run: ./gradlew clean
-      - name: Build with Gradle
+      - name: Assemble with Gradle
         run: ./gradlew raccoon:assemble
 
 
@@ -62,8 +62,8 @@ jobs:
           java-version: 11
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew raccoon:build
+      - name: Test with Gradle
+        run: ./gradlew raccoon:tests
 
 
   androidTests:
