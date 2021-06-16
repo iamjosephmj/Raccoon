@@ -34,6 +34,8 @@ android {
 }
 
 dependencies {
+
+    implementation(project(mapOf("path" to ":raccoon")))
     implementation("com.android.support:multidex:${Dependencies.multiDex}")
 
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
@@ -51,7 +53,6 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:${Dependencies.converter}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Dependencies.coroutines}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.lifecycle}")
-    implementation("com.github.iamjosephmj:${Dependencies.raccoon}")
 
 
 }
