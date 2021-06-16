@@ -2,17 +2,17 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    `maven-publish`
+    id("maven-publish")
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdk  30
+    buildToolsVersion  "30.0.3"
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 30
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk  21
+        targetSdk  30
+        testInstrumentationRunner  "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -28,7 +28,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = "11"
     }
 }
 
@@ -46,13 +46,26 @@ dependencies {
 
 }
 
+
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("raccoon") {
-                groupId = "com.github.iamjosephmj"
-                artifactId = "raccoon"
-                version = "1.0.2"
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.iamjosephmj.raccoon'
+                artifactId = 'release'
+                version = '1.0.3'
+            }
+            // Creates a Maven publication called “debug”.
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+                groupId = 'com.iamjosephmj.raccoon'
+                artifactId = 'release'
+                version = '1.0.3'
             }
         }
     }
