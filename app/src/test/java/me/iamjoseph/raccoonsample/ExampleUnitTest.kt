@@ -1,4 +1,4 @@
-package io.iamjosephmj.raccoonsample
+package me.iamjoseph.raccoonsample
 
 import org.junit.Test
 
