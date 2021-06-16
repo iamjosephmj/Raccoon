@@ -51,7 +51,7 @@ publishing {
         create<MavenPublication>("Raccoon") {
             groupId = "com.github.iamjosephmj"
             artifactId = "raccoon"
-            version = "1.0.2"
+            version = "1.0.0"
         }
     }
 }
