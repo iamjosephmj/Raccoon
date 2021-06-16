@@ -46,12 +46,14 @@ dependencies {
 
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("Raccoon") {
-            groupId = "com.github.iamjosephmj"
-            artifactId = "raccoon"
-            version = "1.0.1"
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("raccoon") {
+                groupId = "com.github.iamjosephmj"
+                artifactId = "raccoon"
+                version = "1.0.2"
+            }
         }
     }
 }
