@@ -1,3 +1,6 @@
+![Raccoon Logo](https://github.com/iamjosephmj/Raccoon/blob/main/media/racoon-logo.png)
+
+
 # Raccoon - Work-in-progress
 
 
