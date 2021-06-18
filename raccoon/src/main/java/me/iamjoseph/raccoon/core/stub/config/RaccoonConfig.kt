@@ -31,7 +31,7 @@ class RaccoonConfig(
         }
 
         fun build(): RaccoonConfig {
-            return me.iamjoseph.raccoon.core.stub.config.RaccoonConfig(
+            return RaccoonConfig(
                 serviceClasses,
                 raccoonParserType
             )

@@ -1,3 +1,6 @@
+![Raccoon Logo](https://github.com/iamjosephmj/Raccoon/blob/main/media/racoon-logo.png)
+
+
 # Raccoon - Work-in-progress
 
 
@@ -80,7 +83,7 @@ Add the following to your project's build.gradle.kts file
 dependencies {
   
   // Other dependencies
-  implementation("com.github.iamjosephmj:Raccoon:1.0.3")
+  implementation("com.github.iamjosephmj:Raccoon:1.0.4")
      
 }
 
