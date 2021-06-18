@@ -35,7 +35,6 @@ android {
 
 dependencies {
 
-    implementation("com.github.iamjosephmj:Raccoon:${Dependencies.raccoon}")
     implementation("com.android.support:multidex:${Dependencies.multiDex}")
 
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
