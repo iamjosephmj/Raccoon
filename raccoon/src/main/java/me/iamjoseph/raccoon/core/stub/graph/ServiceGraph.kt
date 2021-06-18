@@ -12,7 +12,7 @@ import me.iamjoseph.raccoon.controller.RaccoonController
 internal object ServiceGraph {
 
     val serviceObjects: MutableMap<
-            String, MutableList<RaccoonController>
+            String, MutableList<List<RaccoonController>>
             > = mutableMapOf()
 
 

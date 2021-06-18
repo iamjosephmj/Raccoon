@@ -15,18 +15,22 @@ interface RaccoonService {
     val serviceId: String
 
     // getting the controller from the request.
-    fun fetchController(raccoonRequest: RaccoonRequest): RaccoonController
+    fun fetchController(raccoonRequest: RaccoonRequest): List<RaccoonController>
 
     // Request-Response handshake.
-    fun execute(raccoonRequest: RaccoonRequest, controller: RaccoonController): RaccoonResponse
+    fun execute(raccoonRequest: RaccoonRequest, controller: List<RaccoonController>): RaccoonResponse
 
     //Controller setup
-    fun setup(controller: RaccoonController) {
-        controller.setup()
+    fun setup(controller: List<RaccoonController>) {
+        controller.forEach {
+            it.setup()
+        }
     }
 
     // Controller cleanup
-    fun tearDown(controller: RaccoonController) {
-        controller.tearDown()
+    fun tearDown(controller: List<RaccoonController>) {
+        controller.forEach {
+            it.tearDown()
+        }
     }
 }

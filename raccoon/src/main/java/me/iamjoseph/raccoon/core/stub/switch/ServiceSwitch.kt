@@ -18,7 +18,9 @@ class ServiceSwitch {
         services.forEach { service ->
             val controller = service.fetchController(raccoonRequest)
             service.setup(controller)
+
             val result = service.execute(raccoonRequest, controller)
+
             service.tearDown(controller)
             return result
         }

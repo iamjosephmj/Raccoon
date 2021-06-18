@@ -53,6 +53,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:${Dependencies.converter}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Dependencies.coroutines}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.lifecycle}")
+    androidTestImplementation(project(mapOf("path" to ":raccoon")))
 
 
 }

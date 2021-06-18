@@ -1,5 +1,6 @@
 package me.iamjoseph.raccoon.core.processor
 
+import me.iamjoseph.raccoon.annotations.ControllerModule
 import me.iamjoseph.raccoon.annotations.RaccoonController
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
 import me.iamjoseph.raccoon.core.stub.graph.ServiceGraph
@@ -59,22 +60,38 @@ object ServiceProcessor {
 
             .forEach { method ->
                 @Suppress("UNCHECKED_CAST")
+                val firstControllerObject = createControllerObject(
+                    method.invoke(serviceInstance)
+                            as KClass<me.iamjoseph.raccoon.controller.RaccoonController>
+                )
+
                 // Controller object.
-                val controller =
-                    createControllerObject(
-                        method.invoke(serviceInstance)
-                                as KClass<me.iamjoseph.raccoon.controller.RaccoonController>
-                    )
+                val controllers: MutableList<me.iamjoseph.raccoon.controller.RaccoonController> =
+                    mutableListOf()
+
+                firstControllerObject.javaClass.getAnnotation(ControllerModule::class.java)
+                    ?.let { controllerList ->
+                        controllerList.includeControllers.forEach { controllerClass ->
+                            controllers.add(
+                                createControllerObject(
+                                    controllerClass
+                                )
+                            )
+                        }
+
+                    }
+
+                controllers.add(firstControllerObject)
 
                 // adding controller objects into service.
                 ServiceGraph.serviceObjects[serviceInstance.serviceId.split(".")
                     .last()
                 ]?.add(
-                    controller
+                    controllers
                 )
 
                 // Controller graph initialization entry point
-                ControllerProcessor.makeControllerGraph(serviceInstance, controller)
+                ControllerProcessor.makeControllerGraph(serviceInstance, controllers)
             }
         return serviceInstance
     }
@@ -84,7 +101,7 @@ object ServiceProcessor {
      */
     private fun createControllerObject(
         returnType:
-        KClass<me.iamjoseph.raccoon.controller.RaccoonController>
+        KClass<out me.iamjoseph.raccoon.controller.RaccoonController>
     ):
             me.iamjoseph.raccoon.controller.RaccoonController {
         return returnType.java.newInstance()

@@ -1,5 +1,6 @@
-package me.iamjoseph.raccoonsample.helper
+package me.iamjoseph.raccoonsample.parsingtest.helper
 
+import me.iamjoseph.raccoon.annotations.ControllerModule
 import me.iamjoseph.raccoonsample.Constants.BASE_URL
 import me.iamjoseph.raccoonsample.retrofit.Response
 import me.iamjoseph.raccoon.annotations.Params
@@ -10,6 +11,7 @@ import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 import me.iamjoseph.raccoon.presentation.response.RaccoonResponse
 import me.iamjoseph.raccoon.util.Utils.buildRaccoonResponse
 
+@ControllerModule
 class MockController : RaccoonController() {
 
     override fun setup() {
