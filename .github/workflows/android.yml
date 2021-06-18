@@ -63,13 +63,13 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: IntegrationTestsMoshi
-        run: ./gradlew raccoon:test --tests "me.iamjoseph.raccoon.IntegrationTestsMoshi"
+        run: ./gradlew raccoon:testDebugUnitTest  --tests "me.iamjoseph.raccoon.IntegrationTestsMoshi"
       - name: IncludeIntegrationTestsMoshi
-        run: ./gradlew raccoon:test --tests "me.iamjoseph.raccoon.IncludeIntegrationTestsMoshi"
+        run: ./gradlew raccoon:testDebugUnitTest  --tests "me.iamjoseph.raccoon.IncludeIntegrationTestsMoshi"
       - name: IntegrationTestsGson
-        run: ./gradlew raccoon:test --tests "me.iamjoseph.raccoon.IntegrationTestsGson"
+        run: ./gradlew raccoon:testDebugUnitTest  --tests "me.iamjoseph.raccoon.IntegrationTestsGson"
       - name: IncludedIntegrationTestsGson
-        run: ./gradlew raccoon:test --tests "me.iamjoseph.raccoon.IncludedIntegrationTestsGson"
+        run: ./gradlew raccoon:testDebugUnitTest  --tests "me.iamjoseph.raccoon.IncludedIntegrationTestsGson"
 
 
   androidTests:
