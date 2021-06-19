@@ -37,7 +37,7 @@ object RaccoonStub {
     /**
      * Memory cleanup
      */
-    fun teatDown() {
+    fun tearDown() {
         ControllerGraph.cleanUp()
         ServiceGraph.cleanUp()
     }

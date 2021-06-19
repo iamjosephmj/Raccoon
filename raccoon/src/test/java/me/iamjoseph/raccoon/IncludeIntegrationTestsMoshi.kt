@@ -4,7 +4,6 @@ import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
 import me.iamjoseph.raccoon.exception.EndpointNotFoundException
 import me.iamjoseph.raccoon.helper.GsonServiceInclude
-import me.iamjoseph.raccoon.helper.MockService
 import me.iamjoseph.raccoon.helper.request.GsonRequestBody
 import me.iamjoseph.raccoon.parser.GsonPlugin
 import me.iamjoseph.raccoon.presentation.request.Parameters
@@ -25,7 +24,7 @@ class IncludeIntegrationTestsMoshi {
 
     @Before
     fun setupStub() {
-        RaccoonStub.teatDown()
+        RaccoonStub.tearDown()
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(GsonServiceInclude::class)
@@ -219,7 +218,7 @@ class IncludeIntegrationTestsMoshi {
 
     @After
     fun cleanUp() {
-        RaccoonStub.teatDown()
+        RaccoonStub.tearDown()
     }
 
 }

@@ -24,7 +24,7 @@ class IntegrationTestsMoshi {
 
     @Before
     fun setupStub() {
-        RaccoonStub.teatDown()
+        RaccoonStub.tearDown()
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(MockService::class)
@@ -242,7 +242,7 @@ class IntegrationTestsMoshi {
 
     @After
     fun cleanUp() {
-        RaccoonStub.teatDown()
+        RaccoonStub.tearDown()
     }
 
 }
