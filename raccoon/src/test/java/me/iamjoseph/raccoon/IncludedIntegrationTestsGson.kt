@@ -24,7 +24,6 @@ class IncludedIntegrationTestsGson {
 
     @Before
     fun setupStub() {
-        RaccoonStub.tearDown()
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(GsonServiceInclude::class)
