@@ -24,7 +24,6 @@ class IntegrationTestsGson {
 
     @Before
     fun setupStub() {
-        RaccoonStub.teatDown()
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(MockService::class)
@@ -218,7 +217,7 @@ class IntegrationTestsGson {
 
     @After
     fun cleanUp() {
-        RaccoonStub.teatDown()
+        RaccoonStub.tearDown()
     }
 
 }

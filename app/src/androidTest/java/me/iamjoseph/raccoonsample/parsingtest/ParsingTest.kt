@@ -47,7 +47,7 @@ class ParsingTest {
 
     @After
     fun tearDown() {
-        RaccoonStub.teatDown()
+        RaccoonStub.tearDown()
     }
 
 }

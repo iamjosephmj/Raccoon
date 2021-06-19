@@ -5,6 +5,7 @@ import androidx.test.rule.ActivityTestRule
 import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
 import me.iamjoseph.raccoonsample.MainActivity
+import me.iamjoseph.raccoonsample.includetest.helpers.MockService
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -30,7 +31,7 @@ class IncludeTest {
     fun before() {
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
-                .addService(me.iamjoseph.raccoonsample.includetest.helpers.MockService::class)
+                .addService(MockService::class)
                 .build()
         )
     }
