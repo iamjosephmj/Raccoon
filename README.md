@@ -39,10 +39,9 @@
 
 ## Medium Articles
 
-Checkout these articles to get more insights about this library:
+Checkout these article to get more insights about this library:
 
-- Know the internals of the Library.
-- How to integrate this in your Android Test.
+- [How to integrate this in your Android Test](https://iamjosephmj.medium.com/efficient-android-testing-using-raccoon-and-espresso-c890770276a)
 
 ## Why Raccoon?
 
