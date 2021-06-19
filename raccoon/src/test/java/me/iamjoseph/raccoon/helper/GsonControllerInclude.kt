@@ -1,23 +1,26 @@
+@file:Suppress("UNUSED_PARAMETER")
+
 package me.iamjoseph.raccoon.helper
 
 import me.iamjoseph.raccoon.annotations.ControllerModule
 import me.iamjoseph.raccoon.annotations.Params
 import me.iamjoseph.raccoon.annotations.RaccoonEndpoint
 import me.iamjoseph.raccoon.controller.RaccoonController
-import me.iamjoseph.raccoon.helper.request.GsonRequestBody
+import me.iamjoseph.raccoon.helper.request.MoshiRequestBody
 import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 import me.iamjoseph.raccoon.presentation.response.RaccoonResponse
 
-@ControllerModule
-class GsonController : RaccoonController() {
+
+@ControllerModule(includeControllers = [GsonController::class])
+class GsonControllerInclude : RaccoonController() {
 
     override fun setup() {
         // Do the DI related stuff
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-get-request",
+        endpoint = "moshi-test-get-request",
         responseTime = 100,
         RaccoonRequestType.GET
     )
@@ -29,7 +32,7 @@ class GsonController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-post-no-body-request",
+        endpoint = "moshi-test-post-no-body-request",
         responseTime = 100,
         RaccoonRequestType.POST
     )
@@ -42,7 +45,7 @@ class GsonController : RaccoonController() {
 
 
     @RaccoonEndpoint(
-        endpoint = "test-query-params-request",
+        endpoint = "moshi-test-query-params-request",
         responseTime = 100,
         RaccoonRequestType.GET
     )
@@ -54,7 +57,7 @@ class GsonController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-header-request",
+        endpoint = "moshi-test-header-request",
         responseTime = 100,
         RaccoonRequestType.GET
     )
@@ -66,13 +69,13 @@ class GsonController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-post-request",
+        endpoint = "moshi-test-post-request",
         responseTime = 100,
         RaccoonRequestType.POST
     )
     fun apiInvocationPost(
-        @Params headers: Parameters,
-        gsonRequestBody: GsonRequestBody
+        MoshiRequestBody: MoshiRequestBody,
+        @Params headers: Parameters
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
@@ -82,13 +85,13 @@ class GsonController : RaccoonController() {
 
 
     @RaccoonEndpoint(
-        endpoint = "test-put-request",
+        endpoint = "moshi-test-put-request",
         responseTime = 100,
         RaccoonRequestType.PUT
     )
     fun apiInvocationPut(
         @Params headers: Parameters,
-        gsonRequestBody: GsonRequestBody
+        MoshiRequestBody: MoshiRequestBody
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
@@ -98,13 +101,13 @@ class GsonController : RaccoonController() {
 
 
     @RaccoonEndpoint(
-        endpoint = "test-delete-request",
+        endpoint = "moshi-test-delete-request",
         responseTime = 100,
         RaccoonRequestType.DELETE
     )
     fun apiInvocationDelete(
         @Params headers: Parameters,
-        gsonRequestBody: GsonRequestBody
+        MoshiRequestBody: MoshiRequestBody
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
@@ -113,13 +116,13 @@ class GsonController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-patch-request",
+        endpoint = "moshi-test-patch-request",
         responseTime = 100,
         RaccoonRequestType.PATCH
     )
     fun apiInvocationPatch(
         @Params headers: Parameters,
-        gsonRequestBody: GsonRequestBody
+        MoshiRequestBody: MoshiRequestBody
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
@@ -128,13 +131,13 @@ class GsonController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-update-request",
+        endpoint = "moshi-test-update-request",
         responseTime = 100,
         requestType = RaccoonRequestType.UPDATE
     )
     fun apiInvocationUpdate(
         @Params headers: Parameters,
-        gsonRequestBody: GsonRequestBody
+        MoshiRequestBody: MoshiRequestBody
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
@@ -143,20 +146,16 @@ class GsonController : RaccoonController() {
     }
 
     @RaccoonEndpoint(
-        endpoint = "test-header-request",
+        endpoint = "moshi-test-no-request-object",
         responseTime = 100,
-        requestType = RaccoonRequestType.POST
+        requestType = RaccoonRequestType.UPDATE
     )
-    fun apiInvocationHeader(
-        @Params headers: Parameters,
-        gsonRequestBody: GsonRequestBody
+    fun apiInvocationNoRequestObj(
+        @Params headers: Parameters
     ): RaccoonResponse {
         return RaccoonResponse(
             statusCode = 200,
-            body = "{success}",
-            parameters = Parameters(
-                headers = listOf(Pair("header-test", "{success}"))
-            )
+            body = "{success}"
         )
     }
 

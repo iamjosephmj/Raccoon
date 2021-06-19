@@ -1,10 +1,10 @@
-package me.iamjoseph.raccoonsample
+package me.iamjoseph.raccoonsample.includetest
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import me.iamjoseph.raccoonsample.helper.MockService
 import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
+import me.iamjoseph.raccoonsample.MainActivity
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -18,25 +18,26 @@ import org.junit.runner.RunWith
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @RunWith(AndroidJUnit4::class)
-class MainActivityTest {
+class IncludeTest {
 
-    @Before
-    fun setup() {
-        RaccoonStub.setUp(
-            RaccoonConfig.Builder()
-                .addService(MockService::class)
-                .build()
-        )
-
-    }
 
     @get:Rule
     val rule = ActivityTestRule(
         MainActivity::class.java, false, false
     )
 
+    @Before
+    fun before() {
+        RaccoonStub.setUp(
+            RaccoonConfig.Builder()
+                .addService(me.iamjoseph.raccoonsample.includetest.helpers.MockService::class)
+                .build()
+        )
+    }
+
+
     @Test
-    fun useAppContext() {
+    fun testInclude() {
         rule.launchActivity(null)
         Thread.sleep(5000)
         // Context of the app under test.
@@ -44,9 +45,9 @@ class MainActivityTest {
         rule.activity.finish()
     }
 
-    @After
-    fun tearDown() {
-        RaccoonStub.teatDown()
-    }
 
+    @After
+    fun after() {
+
+    }
 }

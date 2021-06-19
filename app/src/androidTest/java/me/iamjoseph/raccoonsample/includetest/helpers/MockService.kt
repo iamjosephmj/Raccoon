@@ -1,14 +1,12 @@
-package me.iamjoseph.raccoonsample.helper
+package me.iamjoseph.raccoonsample.includetest.helpers
 
 import me.iamjoseph.raccoon.annotations.RaccoonController
 import me.iamjoseph.raccoon.annotations.RaccoonService
 import me.iamjoseph.raccoon.service.RaccoonServiceImpl
-import me.iamjoseph.raccoonsample.helper.MockController
-
 
 @RaccoonService
 class MockService : RaccoonServiceImpl() {
 
     @RaccoonController
-    fun providesMockController() = MockController::class
+    fun providesMockController() = MockController1::class
 }

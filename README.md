@@ -118,7 +118,7 @@ the same `Controller`
 
 ```kotlin
 
-
+@ControllerModule
 class MockController : RaccoonController() {
 
     override fun setup() {
@@ -127,7 +127,7 @@ class MockController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "your endpoint",
-        latency = 100, /* delay in api response delivery */
+        responseTime = 100, /* delay in api response delivery */
         RaccoonRequestType.GET /* user can define their request types here */
     )
     fun fetchToDoList(@Params headers: Parameters): RaccoonResponse {
@@ -179,6 +179,19 @@ function `buildRaccoonResponse` to do the same
  return </* Your response object */>
         .buildRaccoonResponse(statusCode = 200 /* STATUS code of the api response */)
 
+```
+
+You can also include multiple controllers in single controller class to maintain modularity in
+your project.
+
+
+```kotlin
+
+@ControllerModule(includeControllers = [MockController2::class /* you can add any number of controllers here */])
+class MockController : RaccoonController() {
+
+    // your implementation ...
+}
 ```
 
 

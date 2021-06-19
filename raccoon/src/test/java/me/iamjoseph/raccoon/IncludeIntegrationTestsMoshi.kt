@@ -3,6 +3,7 @@ package me.iamjoseph.raccoon
 import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
 import me.iamjoseph.raccoon.exception.EndpointNotFoundException
+import me.iamjoseph.raccoon.helper.GsonServiceInclude
 import me.iamjoseph.raccoon.helper.MockService
 import me.iamjoseph.raccoon.helper.request.GsonRequestBody
 import me.iamjoseph.raccoon.parser.GsonPlugin
@@ -16,7 +17,7 @@ import org.junit.Before
 import org.junit.Test
 
 
-class IntegrationTestsGson {
+class IncludeIntegrationTestsMoshi {
 
     private val gsonPlugin by lazy {
         GsonPlugin()
@@ -27,7 +28,7 @@ class IntegrationTestsGson {
         RaccoonStub.teatDown()
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
-                .addService(MockService::class)
+                .addService(GsonServiceInclude::class)
                 .setParserType(GsonPlugin())
                 .build()
         )

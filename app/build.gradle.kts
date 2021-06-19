@@ -35,7 +35,6 @@ android {
 
 dependencies {
 
-    implementation("com.github.iamjosephmj:Raccoon:${Dependencies.raccoon}")
     implementation("com.android.support:multidex:${Dependencies.multiDex}")
 
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
@@ -45,6 +44,7 @@ dependencies {
 
 
     implementation("androidx.test.ext:junit-ktx:${Dependencies.junit}")
+    implementation(project(mapOf("path" to ":raccoon")))
     androidTestImplementation("androidx.test.espresso:espresso-core:${Dependencies.espresso}")
     androidTestImplementation("androidx.test:runner:${Dependencies.runner}")
     androidTestImplementation("androidx.test:rules:${Dependencies.rules}")
@@ -53,6 +53,5 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:${Dependencies.converter}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Dependencies.coroutines}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Dependencies.lifecycle}")
-
 
 }

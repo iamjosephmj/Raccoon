@@ -24,6 +24,7 @@ class IntegrationTestsMoshi {
 
     @Before
     fun setupStub() {
+        RaccoonStub.teatDown()
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(MockService::class)

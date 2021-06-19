@@ -1,7 +1,6 @@
-package me.iamjoseph.raccoonsample.helper
+package me.iamjoseph.raccoonsample.includetest.helpers
 
-import me.iamjoseph.raccoonsample.Constants.BASE_URL
-import me.iamjoseph.raccoonsample.retrofit.Response
+import me.iamjoseph.raccoon.annotations.ControllerModule
 import me.iamjoseph.raccoon.annotations.Params
 import me.iamjoseph.raccoon.annotations.RaccoonEndpoint
 import me.iamjoseph.raccoon.controller.RaccoonController
@@ -9,16 +8,19 @@ import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 import me.iamjoseph.raccoon.presentation.response.RaccoonResponse
 import me.iamjoseph.raccoon.util.Utils.buildRaccoonResponse
+import me.iamjoseph.raccoonsample.Constants
+import me.iamjoseph.raccoonsample.retrofit.Response
 
-class MockController : RaccoonController() {
+@ControllerModule
+class MockController2 : RaccoonController() {
 
     override fun setup() {
-        // Do the DI related stuff
+
     }
 
     @RaccoonEndpoint(
-        endpoint = "${BASE_URL}todos/1",
-        latency = 100,
+        endpoint = "${Constants.BASE_URL}todos/1",
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun fetchToDoList(@Params headers: Parameters): RaccoonResponse {
@@ -30,8 +32,7 @@ class MockController : RaccoonController() {
         ).buildRaccoonResponse(statusCode = 200)
     }
 
-
     override fun tearDown() {
-        // clean up memory.
+
     }
 }

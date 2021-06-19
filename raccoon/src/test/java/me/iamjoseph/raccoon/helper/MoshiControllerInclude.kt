@@ -9,8 +9,8 @@ import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 import me.iamjoseph.raccoon.presentation.response.RaccoonResponse
 
-@ControllerModule
-class GsonController : RaccoonController() {
+@ControllerModule(includeControllers = [MoshiController::class])
+class MoshiControllerInclude : RaccoonController() {
 
     override fun setup() {
         // Do the DI related stuff

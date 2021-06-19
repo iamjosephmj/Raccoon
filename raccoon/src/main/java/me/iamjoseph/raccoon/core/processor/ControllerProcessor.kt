@@ -17,59 +17,65 @@ internal object ControllerProcessor {
      * Controller Graph Creation.
      *
      * @param serviceInstance instance object of Raccoon Service class.
-     * @param controller raccoonControl instance.
+     * @param controllers raccoonControl instance.
      */
     fun makeControllerGraph(
         serviceInstance: RaccoonService,
-        controller: RaccoonController
+        controllers: List<RaccoonController>
     ) {
 
-        // Endpoint graph-lookup initialization.
-        @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-        ControllerGraph.endpointPool[
-                "${
-                    serviceInstance.serviceId
-                        .split(".")
-                        .last()
-                }-${
-                    controller.javaClass.canonicalName.split(".")
-                        .last()
-                }"
-                // Assigning empty list
-        ] = mutableListOf()
 
-        controller.javaClass.methods
-            .filter { method ->
-                // Filtering based on annotation.
-                method.getAnnotation(RaccoonEndpoint::class.java) != null
-            }.map { method ->
-                val details =
-                    method.getAnnotation(RaccoonEndpoint::class.java)
-                // Creating method-Controller metadata pair.
-                Pair(
-                    method, ControllerMetaData(
-                        endpoint = details.endpoint,
-                        latency = details.latency,
-                        requestType = details.requestType
+        controllers.forEach {
+            // Endpoint graph-lookup initialization.
+            @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+            ControllerGraph.endpointPool[
+                    "${
+                        serviceInstance.serviceId
+                            .split(".")
+                            .last()
+                    }-${
+                        it.javaClass.canonicalName.split(".")
+                            .last()
+                    }"
+                    // Assigning empty list
+            ] = mutableListOf()
+        }
+
+        controllers.forEach { controller->
+
+            controller.javaClass.methods
+                .filter { method ->
+                    // Filtering based on annotation.
+                    method.getAnnotation(RaccoonEndpoint::class.java) != null
+                }.map { method ->
+                    val details =
+                        method.getAnnotation(RaccoonEndpoint::class.java)
+                    // Creating method-Controller metadata pair.
+                    Pair(
+                        method, ControllerMetaData(
+                            endpoint = details.endpoint,
+                            latency = details.responseTime,
+                            requestType = details.requestType
+                        )
                     )
-                )
-            }
-            .forEach { pair ->
-                // Storing the pair in the endpoint pool.
-                @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-                ControllerGraph.endpointPool[
-                        "${
-                            serviceInstance.serviceId.split(".")
-                                .last()
-                        }-${
-                            controller.javaClass.canonicalName.split(".")
-                                .last()
-                        }"
-                ]?.add(
-                    pair.second
-                )
-            }
+                }
+                .forEach { pair ->
+                    // Storing the pair in the endpoint pool.
+                    @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+                    ControllerGraph.endpointPool[
+                            "${
+                                serviceInstance.serviceId.split(".")
+                                    .last()
+                            }-${
+                                controller.javaClass.canonicalName.split(".")
+                                    .last()
+                            }"
+                    ]?.add(
+                        pair.second
+                    )
+                }
 
+        }
 
     }
 }
