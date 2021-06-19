@@ -20,7 +20,7 @@ class MockController2 : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "${Constants.BASE_URL}todos/1",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun fetchToDoList(@Params headers: Parameters): RaccoonResponse {

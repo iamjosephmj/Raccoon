@@ -20,7 +20,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-get-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun apiInvocationGet(@Params headers: Parameters): RaccoonResponse {
@@ -32,7 +32,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-post-no-body-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.POST
     )
     fun apiInvocationPostNoBody(@Params headers: Parameters): RaccoonResponse {
@@ -45,7 +45,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-query-params-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun apiInvocationQueryParams(@Params headers: Parameters): RaccoonResponse {
@@ -57,7 +57,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-header-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun apiInvocationHeader(@Params headers: Parameters): RaccoonResponse {
@@ -69,7 +69,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-post-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.POST
     )
     fun apiInvocationPost(
@@ -85,7 +85,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-put-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.PUT
     )
     fun apiInvocationPut(
@@ -101,7 +101,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-delete-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.DELETE
     )
     fun apiInvocationDelete(
@@ -116,7 +116,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-patch-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.PATCH
     )
     fun apiInvocationPatch(
@@ -131,7 +131,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-update-request",
-        latency = 100,
+        responseTime = 100,
         requestType = RaccoonRequestType.UPDATE
     )
     fun apiInvocationUpdate(
@@ -146,7 +146,7 @@ class MoshiController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "moshi-test-no-request-object",
-        latency = 100,
+        responseTime = 100,
         requestType = RaccoonRequestType.UPDATE
     )
     fun apiInvocationNoRequestObj(

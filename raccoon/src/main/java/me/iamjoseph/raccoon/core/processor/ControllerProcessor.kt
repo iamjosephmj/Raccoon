@@ -54,7 +54,7 @@ internal object ControllerProcessor {
                     Pair(
                         method, ControllerMetaData(
                             endpoint = details.endpoint,
-                            latency = details.latency,
+                            latency = details.responseTime,
                             requestType = details.requestType
                         )
                     )

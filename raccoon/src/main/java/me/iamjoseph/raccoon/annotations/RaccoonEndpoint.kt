@@ -11,6 +11,6 @@ import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 @Retention(AnnotationRetention.RUNTIME)
 annotation class RaccoonEndpoint(
     val endpoint: String,
-    val latency: Long = 100,
+    val responseTime: Long = 100,
     val requestType: RaccoonRequestType
 )

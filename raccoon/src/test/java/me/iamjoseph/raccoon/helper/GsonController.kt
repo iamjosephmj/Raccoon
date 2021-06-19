@@ -18,7 +18,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-get-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun apiInvocationGet(@Params headers: Parameters): RaccoonResponse {
@@ -30,7 +30,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-post-no-body-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.POST
     )
     fun apiInvocationPostNoBody(@Params headers: Parameters): RaccoonResponse {
@@ -43,7 +43,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-query-params-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun apiInvocationQueryParams(@Params headers: Parameters): RaccoonResponse {
@@ -55,7 +55,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-header-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.GET
     )
     fun apiInvocationHeader(@Params headers: Parameters): RaccoonResponse {
@@ -67,7 +67,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-post-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.POST
     )
     fun apiInvocationPost(
@@ -83,7 +83,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-put-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.PUT
     )
     fun apiInvocationPut(
@@ -99,7 +99,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-delete-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.DELETE
     )
     fun apiInvocationDelete(
@@ -114,7 +114,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-patch-request",
-        latency = 100,
+        responseTime = 100,
         RaccoonRequestType.PATCH
     )
     fun apiInvocationPatch(
@@ -129,7 +129,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-update-request",
-        latency = 100,
+        responseTime = 100,
         requestType = RaccoonRequestType.UPDATE
     )
     fun apiInvocationUpdate(
@@ -144,7 +144,7 @@ class GsonController : RaccoonController() {
 
     @RaccoonEndpoint(
         endpoint = "test-header-request",
-        latency = 100,
+        responseTime = 100,
         requestType = RaccoonRequestType.POST
     )
     fun apiInvocationHeader(

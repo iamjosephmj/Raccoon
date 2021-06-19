@@ -94,7 +94,7 @@ open class RaccoonServiceImpl : RaccoonService {
                     }.forEach { method ->
 
                         // TODO: room to introduce request related parameters
-                        Thread.sleep(method.getAnnotation(RaccoonEndpoint::class.java).latency)
+                        Thread.sleep(method.getAnnotation(RaccoonEndpoint::class.java).responseTime)
 
                         val headerIndex =
                             method.parameterAnnotations.indexOfFirst { annotationList ->
