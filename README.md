@@ -83,7 +83,7 @@ Add the following to your project's build.gradle.kts file
 dependencies {
   
   // Other dependencies
-  implementation("com.github.iamjosephmj:Raccoon:1.0.4")
+  implementation("com.github.iamjosephmj:Raccoon:1.0.5")
      
 }
 
