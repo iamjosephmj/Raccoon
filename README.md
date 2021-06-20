@@ -147,7 +147,7 @@ class MockController : RaccoonController() {
 If user wishes to import some objects via DI, this function will be entry point to do the same.
 This function is called before the endpoint endpoint definition is called.
 
-#### `clean()`
+#### `tearDown()`
 
 This function is the best candidate to free up the memory after the endpoint point definition
 execution. This function is called after the endpoint endpoint definition is called.
