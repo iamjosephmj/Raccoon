@@ -53,7 +53,7 @@ to do the whole process.
 
 ## Insights
 
-The integration of this library is soo much compact in such a way that we will the developer
+The integration of this library is soo much compact in such a way that the developer
 doesn't need to take much time for the process. We basically need to make main 3 additions:
 
 - Add the Interceptor Plugin
