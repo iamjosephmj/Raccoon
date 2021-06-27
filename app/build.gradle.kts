@@ -35,7 +35,7 @@ android {
 
 dependencies {
 
-    implementation("com.github.iamjosephmj:Raccoon:${Dependencies.raccoon}")
+    implementation(project(mapOf("path" to ":raccoon")))
     implementation("com.android.support:multidex:${Dependencies.multiDex}")
     implementation("androidx.core:core-ktx:${Dependencies.coreKtx}")
     implementation("androidx.appcompat:appcompat:${Dependencies.appcompat}")

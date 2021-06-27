@@ -2,14 +2,14 @@ package me.iamjoseph.raccoonsample.parsingtest
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import me.iamjoseph.raccoonsample.parsingtest.helper.MockService
 import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
+import me.iamjoseph.raccoon.rules.RaccoonTestRule
 import me.iamjoseph.raccoonsample.MainActivity
-import org.junit.After
-import org.junit.Before
+import me.iamjoseph.raccoonsample.parsingtest.helper.MockService
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 
 
@@ -21,8 +21,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ParsingTest {
 
-    @Before
-    fun setup() {
+
+    private val raccoonTestRule = RaccoonTestRule {
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(MockService::class)
@@ -31,23 +31,19 @@ class ParsingTest {
 
     }
 
+    private val activityTestRule = ActivityTestRule(MainActivity::class.java)
+
     @get:Rule
-    val rule = ActivityTestRule(
-        MainActivity::class.java, false, false
-    )
+    val chain: RuleChain = RuleChain
+        .outerRule(raccoonTestRule)
+        .around(activityTestRule)
+
 
     @Test
     fun useAppContext() {
-        rule.launchActivity(null)
         Thread.sleep(5000)
         // Context of the app under test.
         assert(true)
-        rule.activity.finish()
-    }
-
-    @After
-    fun tearDown() {
-        RaccoonStub.tearDown()
     }
 
 }
