@@ -9,10 +9,11 @@ import me.iamjoseph.raccoon.parser.MoshiPlugin
 import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequest
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
+import me.iamjoseph.raccoon.rules.RaccoonTestRule
 import org.junit.After
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
-import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 
@@ -22,8 +23,8 @@ class IntegrationTestsMoshi {
         MoshiPlugin()
     }
 
-    @Before
-    fun setupStub() {
+    @get:Rule
+    val rule = RaccoonTestRule {
         RaccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(MockService::class)
@@ -236,12 +237,6 @@ class IntegrationTestsMoshi {
         }
 
         assertTrue(isExceptionOccurred)
-    }
-
-
-    @After
-    fun cleanUp() {
-        RaccoonStub.tearDown()
     }
 
 }

@@ -1,7 +1,7 @@
 ![Raccoon Logo](https://github.com/iamjosephmj/Raccoon/blob/main/media/racoon-logo.png)
 
 
-# Raccoon - Work-in-progress
+# Raccoon
 
 
 
@@ -39,10 +39,9 @@
 
 ## Medium Articles
 
-Checkout these articles to get more insights about this library:
+Checkout these article to get more insights about this library:
 
-- Know the internals of the Library.
-- How to integrate this in your Android Test.
+- [How to integrate this in your Android Test](https://iamjosephmj.medium.com/efficient-android-testing-using-raccoon-and-espresso-c890770276a)
 
 ## Why Raccoon?
 
@@ -54,7 +53,7 @@ to do the whole process.
 
 ## Insights
 
-The integration of this library is soo much compact in such a way that we will the developer
+The integration of this library is soo much compact in such a way that the developer
 doesn't need to take much time for the process. We basically need to make main 3 additions:
 
 - Add the Interceptor Plugin
@@ -148,7 +147,7 @@ class MockController : RaccoonController() {
 If user wishes to import some objects via DI, this function will be entry point to do the same.
 This function is called before the endpoint endpoint definition is called.
 
-#### `clean()`
+#### `tearDown()`
 
 This function is the best candidate to free up the memory after the endpoint point definition
 execution. This function is called after the endpoint endpoint definition is called.
