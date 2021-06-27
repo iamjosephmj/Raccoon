@@ -42,6 +42,7 @@ dependencies {
     implementation("com.squareup.moshi:moshi:${Dependencies.moshi}")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:${Dependencies.moshi}")
     implementation("com.squareup.moshi:moshi-kotlin:${Dependencies.moshi}")
+    implementation("junit:junit:${Dependencies.raccoonJunit}")
     testImplementation("junit:junit:${Dependencies.raccoonJunit}")
 
 }
@@ -57,7 +58,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.iamjosephmj.raccoon'
                 artifactId = 'release'
-                version = '1.0.4'
+                version = '1.0.6'
             }
             // Creates a Maven publication called “debug”.
             debug(MavenPublication) {
@@ -65,7 +66,7 @@ afterEvaluate {
                 from components.debug
                 groupId = 'com.iamjosephmj.raccoon'
                 artifactId = 'release'
-                version = '1.0.4'
+                version = '1.0.6'
             }
         }
     }
