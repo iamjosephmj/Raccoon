@@ -268,6 +268,37 @@ class MainActivityTest {
 
 ```
 
+
+#### `Raccoon TestRule`
+
+You can define the testRule in this way:
+```kotlin
+ 
+// Seup raccoon stub
+val raccoonTestRule = RaccoonTestRule {
+     RaccoonStub.setUp(
+     	RaccoonConfig.Builder()
+        	.addService(ServiceClass::class)
+                .build()
+	)
+}
+ 
+// Setup activity testRule 
+private val activityTestRule = ActivityTestRule(MainActivity::class.java)
+
+@get:Rule
+val chain: RuleChain = RuleChain
+	/*
+	 * Always give raccoon testrule before the activity testRule, because this can be helpfull
+	 * if you app does an API call at the launch of an activity.
+         */
+	.outerRule(raccoonTestRule)
+        .around(activityTestRule)
+    
+```
+
+
+
 ## Contribution, Issues or Future Ideas
 
 If part of Raccoon is not working correctly be sure to file a Github issue. In the issue provide as
