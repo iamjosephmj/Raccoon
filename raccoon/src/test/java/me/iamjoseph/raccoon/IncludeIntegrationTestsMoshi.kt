@@ -10,15 +10,17 @@ import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequest
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 import me.iamjoseph.raccoon.rules.RaccoonTestRule
-import org.junit.After
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 
 class IncludeIntegrationTestsMoshi {
+
+    private val raccoonStub by lazy {
+        RaccoonStub()
+    }
 
     private val gsonPlugin by lazy {
         GsonPlugin()
@@ -26,7 +28,7 @@ class IncludeIntegrationTestsMoshi {
 
     @get:Rule
     val rule = RaccoonTestRule {
-        RaccoonStub.setUp(
+        raccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(GsonServiceInclude::class)
                 .setParserType(GsonPlugin())
@@ -43,7 +45,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -58,7 +60,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -77,7 +79,7 @@ class IncludeIntegrationTestsMoshi {
             )
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "123")
@@ -96,7 +98,7 @@ class IncludeIntegrationTestsMoshi {
             )
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "Android")
@@ -112,7 +114,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -127,7 +129,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -142,7 +144,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -157,7 +159,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -172,7 +174,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -188,7 +190,7 @@ class IncludeIntegrationTestsMoshi {
         )
 
         val isExceptionOccurred = try {
-            RaccoonStub.getServiceSwitch().execute(
+            raccoonStub.getServiceSwitch().execute(
                 request
             )
             false
@@ -210,7 +212,7 @@ class IncludeIntegrationTestsMoshi {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.parameters.headers[0].second, "{success}")

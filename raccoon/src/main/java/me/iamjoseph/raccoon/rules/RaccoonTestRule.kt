@@ -6,19 +6,18 @@ import org.junit.runner.Description
 import org.junit.runners.model.Statement
 
 class RaccoonTestRule(
-    val setup: () -> Unit
+    val setup: () -> RaccoonStub
 ) : TestRule {
     override fun apply(base: Statement?, description: Description?): Statement {
         return object : Statement() {
             override fun evaluate() {
 
                 try {
-                    setup.invoke()
+                    val stub = setup.invoke()
                     base?.evaluate()
+                    stub.tearDown()
                 } catch (ex: Exception) {
-
-                } finally {
-                    RaccoonStub.tearDown()
+                    ex.printStackTrace()
                 }
             }
 

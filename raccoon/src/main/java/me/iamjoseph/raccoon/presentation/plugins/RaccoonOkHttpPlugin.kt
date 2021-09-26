@@ -18,7 +18,7 @@ class RaccoonOkHttpPlugin : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.createRequest()
         return try {
-            val resp = RaccoonStub.getServiceSwitch().execute(request)
+            val resp = RaccoonStub().getServiceSwitch().execute(request)
             resp.createResponse(chain.request())
         } catch (urlExp: RaccoonException) {
             chain.proceed(chain.request())

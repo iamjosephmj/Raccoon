@@ -10,13 +10,19 @@ import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequest
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
 import me.iamjoseph.raccoon.rules.RaccoonTestRule
+import me.iamjosephmj.batchrunner.test.BatchRunner
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
 
 class IncludedIntegrationTestsGson {
+
+    private val raccoonStub by lazy {
+        RaccoonStub()
+    }
 
     private val moshiPlugin by lazy {
         MoshiPlugin()
@@ -24,7 +30,7 @@ class IncludedIntegrationTestsGson {
 
     @get:Rule
     val rule = RaccoonTestRule {
-        RaccoonStub.setUp(
+        raccoonStub.setUp(
             RaccoonConfig.Builder()
                 .addService(GsonServiceInclude::class)
                 .setParserType(MoshiPlugin())
@@ -41,7 +47,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -56,7 +62,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -75,7 +81,7 @@ class IncludedIntegrationTestsGson {
             )
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "123")
@@ -94,7 +100,7 @@ class IncludedIntegrationTestsGson {
             )
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "Android")
@@ -113,7 +119,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -131,7 +137,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -149,7 +155,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -167,7 +173,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -185,7 +191,7 @@ class IncludedIntegrationTestsGson {
             parameters = Parameters()
         )
 
-        val response = RaccoonStub.getServiceSwitch().execute(
+        val response = raccoonStub.getServiceSwitch().execute(
             request
         )
         assertSame(response.body, "{success}")
@@ -201,7 +207,7 @@ class IncludedIntegrationTestsGson {
         )
 
         val isExceptionOccurred = try {
-            RaccoonStub.getServiceSwitch().execute(
+            raccoonStub.getServiceSwitch().execute(
                 request
             )
             false
@@ -227,7 +233,7 @@ class IncludedIntegrationTestsGson {
         )
 
         val isExceptionOccurred = try {
-            RaccoonStub.getServiceSwitch().execute(
+            raccoonStub.getServiceSwitch().execute(
                 request
             )
             false

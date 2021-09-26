@@ -2,6 +2,7 @@ package me.iamjoseph.raccoon.core.processor
 
 import me.iamjoseph.raccoon.annotations.ControllerModule
 import me.iamjoseph.raccoon.annotations.RaccoonController
+import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.core.stub.config.RaccoonConfig
 import me.iamjoseph.raccoon.core.stub.graph.ServiceGraph
 import me.iamjoseph.raccoon.core.stub.interceptor.InterceptorStubImpl
@@ -13,7 +14,9 @@ import kotlin.reflect.KClass
  *
  * @author Joseph James.
  */
-object ServiceProcessor {
+class ServiceProcessor {
+
+    lateinit var controllerProcessor:ControllerProcessor
 
     /**
      * Service graph creation.
@@ -25,13 +28,14 @@ object ServiceProcessor {
      */
     fun makeServiceGraph(
         raccoonConfig: RaccoonConfig,
-        serviceSwitch: InterceptorStubImpl
+        serviceSwitch: InterceptorStubImpl,
+        raccoonStub: RaccoonStub
     ) {
-
+        controllerProcessor = ControllerProcessor(raccoonStub)
         raccoonConfig.serviceClasses.forEach { service ->
             // Creating Runtime object of the Service class mentioned in the Config
             // Adds the Service instance to the serviceSwitch object.
-            serviceSwitch.addService(createServiceObject(service))
+            serviceSwitch.addService(createServiceObject(service, raccoonStub))
         }
 
     }
@@ -42,13 +46,18 @@ object ServiceProcessor {
      * @param service {@see RaccoonService} type.
      * @return Returns raccoon service class.
      */
-    private fun createServiceObject(service: KClass<out RaccoonService>): RaccoonService {
+    private fun createServiceObject(
+        service: KClass<out RaccoonService>,
+        raccoonStub: RaccoonStub
+    ): RaccoonService {
 
         // Object creation.
         val serviceInstance = service.java.newInstance()
 
+        serviceInstance.raccoonStub = raccoonStub
+
         // Initial value.
-        ServiceGraph.serviceObjects[serviceInstance.serviceId] = mutableListOf()
+        raccoonStub.serviceGraph.serviceObjects[serviceInstance.serviceId] = mutableListOf()
 
 
         serviceInstance.javaClass.methods
@@ -84,14 +93,14 @@ object ServiceProcessor {
                 controllers.add(firstControllerObject)
 
                 // adding controller objects into service.
-                ServiceGraph.serviceObjects[serviceInstance.serviceId.split(".")
+                raccoonStub.serviceGraph.serviceObjects[serviceInstance.serviceId.split(".")
                     .last()
                 ]?.add(
                     controllers
                 )
 
                 // Controller graph initialization entry point
-                ControllerProcessor.makeControllerGraph(serviceInstance, controllers)
+                controllerProcessor.makeControllerGraph(serviceInstance, controllers)
             }
         return serviceInstance
     }

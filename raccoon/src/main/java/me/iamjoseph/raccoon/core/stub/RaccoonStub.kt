@@ -14,10 +14,18 @@ import me.iamjoseph.raccoon.parser.RaccoonParser
  *
  * @author Joseph James.
  */
-object RaccoonStub {
+class RaccoonStub {
 
     val stub by lazy {
         InterceptorStubImpl(ServiceSwitch())
+    }
+
+    val serviceGraph by lazy {
+        ServiceGraph()
+    }
+
+    val controllerGraph by lazy {
+        ControllerGraph()
     }
 
     var raccoonParser: RaccoonParser = GsonPlugin()
@@ -25,9 +33,10 @@ object RaccoonStub {
     /**
      * Setup the Endpoint graph based on the raccoon configuration.
      */
-    fun setUp(raccoonConfig: RaccoonConfig) {
+    fun setUp(raccoonConfig: RaccoonConfig): RaccoonStub {
         raccoonParser = raccoonConfig.raccoonParserPlugin
-        ServiceProcessor.makeServiceGraph(raccoonConfig, stub)
+        ServiceProcessor().makeServiceGraph(raccoonConfig, stub, this)
+        return this
     }
 
     fun getServiceSwitch(): InterceptorStubImpl {
@@ -38,8 +47,8 @@ object RaccoonStub {
      * Memory cleanup
      */
     fun tearDown() {
-        ControllerGraph.cleanUp()
-        ServiceGraph.cleanUp()
+        controllerGraph.cleanUp()
+        serviceGraph.cleanUp()
     }
 
 }

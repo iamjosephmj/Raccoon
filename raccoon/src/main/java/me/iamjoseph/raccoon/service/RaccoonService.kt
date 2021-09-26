@@ -1,6 +1,7 @@
 package me.iamjoseph.raccoon.service
 
 import me.iamjoseph.raccoon.controller.RaccoonController
+import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequest
 import me.iamjoseph.raccoon.presentation.response.RaccoonResponse
 
@@ -14,11 +15,16 @@ interface RaccoonService {
     // ID of the specific service.
     val serviceId: String
 
+    var raccoonStub: RaccoonStub
+
     // getting the controller from the request.
     fun fetchController(raccoonRequest: RaccoonRequest): List<RaccoonController>
 
     // Request-Response handshake.
-    fun execute(raccoonRequest: RaccoonRequest, controller: List<RaccoonController>): RaccoonResponse
+    fun execute(
+        raccoonRequest: RaccoonRequest,
+        controller: List<RaccoonController>
+    ): RaccoonResponse
 
     //Controller setup
     fun setup(controller: List<RaccoonController>) {

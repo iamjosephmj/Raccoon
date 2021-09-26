@@ -1,6 +1,6 @@
 package me.iamjoseph.raccoon.util
 
-import me.iamjoseph.raccoon.core.stub.RaccoonStub
+import me.iamjoseph.raccoon.controller.RaccoonController
 import me.iamjoseph.raccoon.presentation.request.Parameters
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequest
 import me.iamjoseph.raccoon.presentation.request.RaccoonRequestType
@@ -111,10 +111,14 @@ object Utils {
 
     fun Any.buildRaccoonResponse(
         statusCode: Int,
-        parameters: Parameters = Parameters()
+        parameters: Parameters = Parameters(),
+        raccoonController: RaccoonController
     ): RaccoonResponse {
 
-        val resp = RaccoonStub.raccoonParser.parseToJson(this, this::class as KClass<Any>)
+        val resp = raccoonController.raccoonStub.raccoonParser.parseToJson(
+            this,
+            this::class as KClass<Any>
+        )
 
         return RaccoonResponse(
             statusCode = statusCode,

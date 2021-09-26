@@ -9,7 +9,7 @@ import me.iamjoseph.raccoon.controller.RaccoonController
  * @author Joseph James
  */
 //TODO:Need to make this into graph structure down the line.
-internal object ServiceGraph {
+class ServiceGraph {
 
     val serviceObjects: MutableMap<
             String, MutableList<List<RaccoonController>>

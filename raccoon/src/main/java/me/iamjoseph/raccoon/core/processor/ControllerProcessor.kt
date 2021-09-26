@@ -1,9 +1,9 @@
 package me.iamjoseph.raccoon.core.processor
 
+import me.iamjoseph.raccoon.annotations.RaccoonEndpoint
 import me.iamjoseph.raccoon.controller.ControllerMetaData
 import me.iamjoseph.raccoon.controller.RaccoonController
-import me.iamjoseph.raccoon.core.stub.graph.ControllerGraph
-import me.iamjoseph.raccoon.annotations.RaccoonEndpoint
+import me.iamjoseph.raccoon.core.stub.RaccoonStub
 import me.iamjoseph.raccoon.service.RaccoonService
 
 /**
@@ -11,7 +11,7 @@ import me.iamjoseph.raccoon.service.RaccoonService
  *
  * @author Joseph James.
  */
-internal object ControllerProcessor {
+class ControllerProcessor(private val raccoonStub: RaccoonStub) {
 
     /**
      * Controller Graph Creation.
@@ -24,11 +24,11 @@ internal object ControllerProcessor {
         controllers: List<RaccoonController>
     ) {
 
-
         controllers.forEach {
+            it.raccoonStub = raccoonStub
             // Endpoint graph-lookup initialization.
             @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-            ControllerGraph.endpointPool[
+            raccoonStub.controllerGraph.endpointPool[
                     "${
                         serviceInstance.serviceId
                             .split(".")
@@ -41,7 +41,7 @@ internal object ControllerProcessor {
             ] = mutableListOf()
         }
 
-        controllers.forEach { controller->
+        controllers.forEach { controller ->
 
             controller.javaClass.methods
                 .filter { method ->
@@ -53,7 +53,7 @@ internal object ControllerProcessor {
                     // Creating method-Controller metadata pair.
                     Pair(
                         method, ControllerMetaData(
-                            endpoint = details.endpoint,
+                            endpoint = details!!.endpoint,
                             latency = details.responseTime,
                             requestType = details.requestType
                         )
@@ -62,7 +62,7 @@ internal object ControllerProcessor {
                 .forEach { pair ->
                     // Storing the pair in the endpoint pool.
                     @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-                    ControllerGraph.endpointPool[
+                    raccoonStub.controllerGraph.endpointPool[
                             "${
                                 serviceInstance.serviceId.split(".")
                                     .last()

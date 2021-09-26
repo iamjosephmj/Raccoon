@@ -4,8 +4,6 @@ import me.iamjoseph.raccoon.annotations.Params
 import me.iamjoseph.raccoon.annotations.RaccoonEndpoint
 import me.iamjoseph.raccoon.controller.RaccoonController
 import me.iamjoseph.raccoon.core.stub.RaccoonStub
-import me.iamjoseph.raccoon.core.stub.graph.ControllerGraph
-import me.iamjoseph.raccoon.core.stub.graph.ServiceGraph
 import me.iamjoseph.raccoon.exception.ControllerParameterException
 import me.iamjoseph.raccoon.exception.EndpointNotFoundException
 import me.iamjoseph.raccoon.exception.ParameterAnnotationNotCorrectException
@@ -26,6 +24,8 @@ open class RaccoonServiceImpl : RaccoonService {
     override val serviceId: String = javaClass.canonicalName.toString().split(".")
         .last()
 
+    override lateinit var raccoonStub: RaccoonStub
+
     /**
      * This method fetches the controller object from the ServiceGraph class.
      */
@@ -33,7 +33,7 @@ open class RaccoonServiceImpl : RaccoonService {
 
         val returnController: MutableList<RaccoonController> = mutableListOf()
 
-        ServiceGraph.serviceObjects[serviceId]
+        raccoonStub.serviceGraph.serviceObjects[serviceId]
             // Filtering controllers.
             ?.filter { controllerList ->
                 var isControllerAvailable = false
@@ -42,7 +42,7 @@ open class RaccoonServiceImpl : RaccoonService {
                     if (!isControllerAvailable) {
                         controllerList.forEach { controller ->
                             @Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-                            ControllerGraph.endpointPool[
+                            raccoonStub.controllerGraph.endpointPool[
                                     "${
                                         serviceId.split(".")
                                             .last()
@@ -84,17 +84,19 @@ open class RaccoonServiceImpl : RaccoonService {
     ): RaccoonResponse {
 
         controllers
-            .forEach { controller->
+            .forEach { controller ->
                 controller.javaClass.methods
                     // Filter based on annotation.
                     .filter { method ->
                         method.getAnnotation(RaccoonEndpoint::class.java) != null &&
-                                method.getAnnotation(RaccoonEndpoint::class.java).endpoint == raccoonRequest.endpoint &&
-                                method.getAnnotation(RaccoonEndpoint::class.java).requestType == raccoonRequest.requestType
+                                method.getAnnotation(RaccoonEndpoint::class.java)?.endpoint == raccoonRequest.endpoint &&
+                                method.getAnnotation(RaccoonEndpoint::class.java)?.requestType == raccoonRequest.requestType
                     }.forEach { method ->
 
                         // TODO: room to introduce request related parameters
-                        Thread.sleep(method.getAnnotation(RaccoonEndpoint::class.java).responseTime)
+                        Thread.sleep(
+                            method.getAnnotation(RaccoonEndpoint::class.java)?.responseTime ?: 10
+                        )
 
                         val headerIndex =
                             method.parameterAnnotations.indexOfFirst { annotationList ->
@@ -157,7 +159,7 @@ open class RaccoonServiceImpl : RaccoonService {
     }
 
     private fun parseRequest(type: Class<*>, data: String): Any {
-        return RaccoonStub.raccoonParser.getFromString(data, type)
+        return raccoonStub.raccoonParser.getFromString(data, type)
     }
 
 

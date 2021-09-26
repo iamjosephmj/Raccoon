@@ -8,7 +8,7 @@ import me.iamjoseph.raccoon.controller.ControllerMetaData
  * @author Joseph James
  */
 //TODO:Need to make this into graph structure down the line.
-internal object ControllerGraph {
+class ControllerGraph {
 
     val endpointPool: MutableMap<String, MutableList<ControllerMetaData>> = mutableMapOf()
 
