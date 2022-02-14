@@ -38,7 +38,9 @@
  <a href = "https://android-arsenal.com/details/1/8322">
      <img src = "https://img.shields.io/badge/Android%20Arsenal-Raccoon-green.svg?style=flat" />
   </a>
-	
+ <a href = "https://androidweekly.net/issues/issue-505">
+     <img src = "https://androidweekly.net/issues/issue-505/badge" />
+  </a>	
 </div>
 
 ## Medium Articles
